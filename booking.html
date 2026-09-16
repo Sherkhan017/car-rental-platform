@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book a car with DriveNow">
+    <title>DriveNow - Booking</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            Drive<span>Now</span>
+        </a>
+
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cars.html">Cars</a></li>
+            <li><a href="booking.html" class="active">Booking</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+    <section class="page-banner">
+
+        <p class="section-label">EASY RESERVATION</p>
+
+        <h1>Book Your Car</h1>
+
+        <p>
+            Complete the form below and send us your rental request.
+        </p>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="booking-layout">
+
+
+
+            <div class="form-container">
+
+                <h2>Rental Information</h2>
+
+                <p class="form-intro">
+                    Please provide your information and rental preferences.
+                </p>
+
+
+                <form id="booking-form" action="#" method="post">
+
+
+                    <!-- Name -->
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Enter your full name"
+                                required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="example@email.com"
+                                required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="+7 700 000 00 00"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="car">
+                            Choose a Car
+                        </label>
+
+                        <select id="car" name="car" required>
+
+                            <option value="">
+                                Select a car
+                            </option>
+
+                            <option value="bmw">
+                                BMW 5 Series - $70/day
+                            </option>
+
+                            <option value="toyota">
+                                Toyota Camry - $50/day
+                            </option>
+
+                            <option value="mercedes">
+                                Mercedes E-Class - $90/day
+                            </option>
+
+                            <option value="audi">
+                                Audi A6 - $80/day
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="pickup">
+                                Pick-up Date
+                            </label>
+
+                            <input
+                                    type="date"
+                                    id="pickup"
+                                    name="pickup"
+                                    required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="return">
+                                Return Date
+                            </label>
+
+                            <input
+                                    type="date"
+                                    id="return"
+                                    name="return"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <fieldset class="radio-group">
+
+                        <legend>
+                            Preferred Payment Method
+                        </legend>
+
+                        <label class="radio-option">
+
+                            <input
+                                    type="radio"
+                                    name="payment"
+                                    value="card"
+                                    required
+                            >
+
+                            Card
+
+                        </label>
+
+
+                        <label class="radio-option">
+
+                            <input
+                                    type="radio"
+                                    name="payment"
+                                    value="cash"
+                            >
+
+                            Cash
+
+                        </label>
+
+                    </fieldset>
+
+
+
+                    <div class="form-group">
+
+                        <label for="color">
+                            Preferred Car Color
+                        </label>
+
+                        <select id="color" name="color">
+
+                            <option value="black">
+                                Black
+                            </option>
+
+                            <option value="white">
+                                White
+                            </option>
+
+                            <option value="silver">
+                                Silver
+                            </option>
+
+                            <option value="blue">
+                                Blue
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="message">
+                            Additional Message
+                        </label>
+
+                        <textarea
+                                id="message"
+                                name="message"
+                                rows="5"
+                                placeholder="Write your message here..."
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <button
+                            type="submit"
+                            class="btn submit-btn">
+                        Send Booking Request
+                    </button>
+
+                </form>
+
+            </div>
+
+
+
+            <aside class="booking-info">
+
+                <h2>Booking Information</h2>
+
+                <p>
+                    Before sending your request, please make sure
+                    that all information is correct.
+                </p>
+
+
+                <h3>What happens next?</h3>
+
+                <ol class="booking-steps">
+
+                    <li>
+                        We receive your request.
+                    </li>
+
+                    <li>
+                        We check the selected car and dates.
+                    </li>
+
+                    <li>
+                        We contact you by email or phone.
+                    </li>
+
+                    <li>
+                        You confirm the rental.
+                    </li>
+
+                </ol>
+
+
+
+            </aside>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <div>
+            <h3>DriveNow</h3>
+
+            <p>
+                Simple and comfortable car rental for every journey.
+            </p>
+        </div>
+
+
+        <div>
+
+            <h3>Quick Links</h3>
+
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cars.html">Cars</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 DriveNow. All rights reserved.
+        </p>
+
+
+
+    </div>
+
+</footer>
+
+</body>
+</html>
