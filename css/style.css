@@ -283,12 +283,17 @@ ol {
 
 
 .car-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
     gap: 25px;
 }
 
 .car-card {
+    flex: 1 1 calc(33.333% - 25px);
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     background-color: white;
 
@@ -309,6 +314,9 @@ ol {
 }
 
 .car-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     padding: 22px;
 }
 
@@ -325,6 +333,7 @@ ol {
 }
 
 .car-description {
+    flex-grow: 1;
     color: #6b7280;
     min-height: 70px;
 }
@@ -348,6 +357,7 @@ ol {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: auto;
 
     padding-top: 15px;
     border-top: 1px solid #e5e7eb;
@@ -439,14 +449,16 @@ ol {
 
 
 .team-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
     gap: 30px;
     max-width: 850px;
     margin: 0 auto;
 }
 
 .team-card {
+    flex: 1 1 320px;
     background-color: white;
     padding: 35px;
 
@@ -494,13 +506,13 @@ ol {
 
 
 .booking-layout {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    display: flex;
     gap: 35px;
-    align-items: start;
+    align-items: flex-start;
 }
 
 .form-container {
+    flex: 2;
     background-color: white;
 
     padding: 35px;
@@ -598,6 +610,7 @@ ol {
 }
 
 .booking-info {
+    flex: 1;
     background-color: #111827;
     color: white;
 
@@ -799,12 +812,17 @@ table tbody tr:last-child td {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .car-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .car-card {
+        flex-basis: calc(50% - 25px);
     }
 
     .booking-layout {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+
+    .form-container,
+    .booking-info {
+        width: 100%;
     }
 
 }
@@ -840,10 +858,18 @@ table tbody tr:last-child td {
     }
 
     .feature-grid,
-    .car-grid,
-    .team-grid,
     .two-column {
         grid-template-columns: 1fr;
+    }
+
+    .car-grid,
+    .team-grid {
+        flex-direction: column;
+    }
+
+    .car-card,
+    .team-card {
+        flex-basis: 100%;
     }
 
     .form-row {
@@ -859,4 +885,126 @@ table tbody tr:last-child td {
         flex-direction: column;
     }
 
+}
+
+/* =========================================================
+   ASSIGNMENT #2 - ONLY NEW REQUIREMENTS
+   Existing navigation, colors and general design are unchanged.
+   ========================================================= */
+
+/* Task 3: Page layout with named Grid Areas */
+.assignment-grid-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "grid-header grid-header"
+        "grid-sidebar grid-main"
+        "grid-footer grid-footer";
+    gap: 20px;
+}
+
+.assignment-grid-header {
+    grid-area: grid-header;
+    padding: 22px;
+    background-color: #111827;
+    color: white;
+    border-radius: 12px;
+}
+
+.assignment-grid-header p,
+.assignment-grid-footer p {
+    margin-bottom: 0;
+}
+
+.assignment-grid-sidebar {
+    grid-area: grid-sidebar;
+    padding: 22px;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.assignment-grid-sidebar ul {
+    margin-top: 15px;
+}
+
+.assignment-grid-main {
+    grid-area: grid-main;
+    padding: 22px;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.assignment-grid-footer {
+    grid-area: grid-footer;
+    padding: 18px 22px;
+    text-align: center;
+    background-color: #0284c7;
+    color: white;
+    border-radius: 12px;
+}
+
+/* Task 4: Image gallery with CSS Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 220px;
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    border-radius: 12px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 14px;
+    color: white;
+    background-color: rgba(17, 24, 39, 0.85);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-item:hover .gallery-caption {
+    transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+    .assignment-grid-layout {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "grid-header"
+            "grid-sidebar"
+            "grid-main"
+            "grid-footer";
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
 }
