@@ -1,85 +1,88 @@
+/* DriveNow - Assignment #3
+   Bootstrap 5.3 + custom CSS
+   Custom CSS keeps the original DriveNow colors and adds the CSS-only media-query task.
+   Spacing is handled mainly with Bootstrap m-/p-/gap utilities in HTML.
+*/
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
+:root {
+    --drivenow-dark: #111827;
+    --drivenow-blue: #0284c7;
+    --drivenow-blue-dark: #0369a1;
+    --drivenow-light: #eef2f7;
+    --drivenow-text: #1f2937;
+    --drivenow-muted: #6b7280;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f7f8fa;
-    color: #1f2937;
+    color: var(--drivenow-text);
     line-height: 1.6;
 }
 
-h1,
-h2,
-h3,
-h4 {
-    line-height: 1.2;
-}
+/* =========================================================
+   TASK 1 - RESPONSIVE TYPOGRAPHY
+   Mobile is the default, then tablet and desktop breakpoints.
+   ========================================================= */
 
 h1 {
-    font-size: 52px;
+    font-size: 2rem;
+    line-height: 1.15;
 }
 
 h2 {
-    font-size: 36px;
-}
-
-h3 {
-    font-size: 22px;
+    font-size: 1.6rem;
+    line-height: 1.2;
 }
 
 p {
-    margin-bottom: 15px;
+    font-size: 0.95rem;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
+@media (min-width: 768px) {
+    h1 {
+        font-size: 2.6rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
 }
 
-img {
-    display: block;
-    width: 100%;
+@media (min-width: 992px) {
+    h1 {
+        font-size: 3.25rem;
+    }
+
+    h2 {
+        font-size: 2.25rem;
+    }
+
+    p {
+        font-size: 1.05rem;
+    }
 }
 
-ul,
-ol {
-    padding-left: 25px;
-}
-
-
-/*
-   NAVI
-    */
+/* =========================================================
+   TASK 5 - BOOTSTRAP NAVBAR + OFFCANVAS SIDEBAR
+   The hamburger is intentionally visible on every screen size.
+   ========================================================= */
 
 .site-header {
-    background-color: #111827;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    z-index: 1030;
 }
 
 .navbar {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 18px 25px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    min-height: 72px;
 }
 
-.logo {
-    color: white;
-    font-size: 27px;
-    font-weight: bold;
+.navbar-brand.logo {
+    font-size: 1.7rem;
+    font-weight: 700;
     letter-spacing: 1px;
 }
 
@@ -87,630 +90,285 @@ ol {
     color: #38bdf8;
 }
 
-.nav-menu {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    gap: 8px;
+.sidebar-toggle {
+    display: block !important;
+    border-color: rgba(255, 255, 255, 0.45);
 }
 
-.nav-menu a {
+.navbar .nav-link {
     color: #d1d5db;
-    padding: 10px 16px;
-    border-radius: 6px;
-    transition: 0.3s ease;
+    border-radius: 0.4rem;
 }
 
-.nav-menu a:hover {
-    color: white;
-    background-color: #1f2937;
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: #ffffff;
+    background-color: var(--drivenow-blue);
 }
 
-.nav-menu a.active {
-    color: white;
-    background-color: #0284c7;
+#mainSidebar {
+    --bs-offcanvas-width: 300px;
 }
 
-
-/*
-   3. HERO
-    */
-
-.hero {
-    max-width: 1200px;
-    min-height: 560px;
-    margin: 0 auto;
-    padding: 70px 25px;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 50px;
+.sidebar-link {
+    color: #d1d5db;
+    text-decoration: none;
+    font-weight: 600;
 }
 
-.hero-content {
-    max-width: 550px;
+.sidebar-link:hover,
+.sidebar-link.active {
+    color: #ffffff;
+    background-color: var(--drivenow-blue);
+}
+
+/* =========================================================
+   GENERAL DESIGN
+   ========================================================= */
+
+.hero-section {
+    background-color: #f7f8fa;
 }
 
 .hero-label,
-.section-label {
-    color: #0284c7;
-    font-size: 13px;
-    font-weight: bold;
+.section-label,
+.car-category {
+    color: var(--drivenow-blue);
+    font-size: 0.8rem;
+    font-weight: 700;
     letter-spacing: 2px;
-    margin-bottom: 12px;
 }
 
-.hero h1 {
-    color: #111827;
-    margin-bottom: 20px;
+.hero-text,
+.section-title p,
+.feature-card p {
+    color: var(--drivenow-muted);
 }
 
-.hero p {
-    color: #6b7280;
-    font-size: 18px;
-}
-
-.hero-image img {
-    height: 390px;
+.hero-image {
+    width: 100%;
+    height: 300px;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: 1.25rem;
 }
 
-
-/*
-   4. BUTTONS
-    */
-
-.btn {
-    display: inline-block;
-    padding: 13px 25px;
-    margin-top: 15px;
-
-    background-color: #0284c7;
-    color: white;
-
-    border: 2px solid #0284c7;
-    border-radius: 7px;
-
-    font-weight: bold;
-    cursor: pointer;
-
-    transition: 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #0369a1;
-    border-color: #0369a1;
-    transform: translateY(-2px);
-}
-
-.btn-light {
-    background-color: white;
-    color: #0369a1;
-    border-color: white;
-}
-
-.btn-light:hover {
-    background-color: #e0f2fe;
-    color: #075985;
-}
-
-.small-btn {
-    display: inline-block;
-    padding: 8px 13px;
-
-    background-color: #0284c7;
-    color: white;
-
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-
-    transition: 0.3s ease;
-}
-
-.small-btn:hover {
-    background-color: #0369a1;
-}
-
-
-
-.section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 80px 25px;
-}
-
-.section-light {
-    max-width: none;
-    background-color: #eef2f7;
-    padding-left: max(25px, calc((100% - 1150px) / 2));
-    padding-right: max(25px, calc((100% - 1150px) / 2));
+@media (min-width: 768px) {
+    .hero-image {
+        height: 390px;
+    }
 }
 
 .section-title {
     max-width: 700px;
-    margin: 0 auto 45px;
-    text-align: center;
 }
 
-.section-title h2 {
-    margin-bottom: 15px;
-    color: #111827;
+.section-light,
+.custom-card-section {
+    background-color: var(--drivenow-light);
 }
-
-.section-title p {
-    color: #6b7280;
-}
-
-
-
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
-
-.feature-card {
-    background-color: white;
-    padding: 30px 25px;
-
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-
-    transition: 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-}
-
-.feature-icon {
-    font-size: 35px;
-    margin-bottom: 15px;
-}
-
-.feature-card h3 {
-    margin-bottom: 10px;
-}
-
-.feature-card p {
-    color: #6b7280;
-}
-
-
-.car-grid {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    gap: 25px;
-}
-
-.car-card {
-    flex: 1 1 calc(33.333% - 25px);
-    min-width: 260px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    background-color: white;
-
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-
-    transition: 0.3s ease;
-}
-
-.car-card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-}
-
-.car-card > img {
-    height: 230px;
-    object-fit: cover;
-}
-
-.car-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 22px;
-}
-
-.car-category {
-    color: #0284c7;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-}
-
-.car-info h3 {
-    margin-bottom: 10px;
-}
-
-.car-description {
-    flex-grow: 1;
-    color: #6b7280;
-    min-height: 70px;
-}
-
-.car-details {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 18px 0;
-}
-
-.car-details span {
-    padding: 5px 9px;
-    background-color: #f1f5f9;
-    border-radius: 5px;
-    color: #475569;
-    font-size: 12px;
-}
-
-.car-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-
-    padding-top: 15px;
-    border-top: 1px solid #e5e7eb;
-}
-
-.car-bottom strong {
-    font-size: 19px;
-    color: #111827;
-}
-
 
 .page-banner {
-    background-color: #111827;
-    color: white;
-
-    text-align: center;
-
-    padding: 75px 25px;
-}
-
-.page-banner h1 {
-    margin-bottom: 15px;
+    background-color: var(--drivenow-dark);
+    color: #ffffff;
 }
 
 .page-banner p:not(.section-label) {
     color: #cbd5e1;
-    max-width: 650px;
-    margin: 0 auto;
 }
 
-
-.two-column {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: start;
-}
-
+.feature-card,
 .info-box {
-    background-color: white;
-    padding: 30px;
-
+    background-color: #ffffff;
     border: 1px solid #e5e7eb;
-    border-radius: 12px;
+    border-radius: 0.75rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.info-box h3 {
-    margin-bottom: 20px;
+.feature-card:hover,
+.info-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
-.check-list {
-    list-style: none;
-    padding: 0;
+.feature-icon {
+    font-size: 2.2rem;
 }
 
-.check-list li {
-    padding: 10px 0 10px 28px;
-    border-bottom: 1px solid #e5e7eb;
-    position: relative;
-}
+/* =========================================================
+   TASK 2 - CSS-ONLY RESPONSIVE CARD GROUP
+   Desktop: 3 cards
+   Tablet: 2 cards
+   Mobile: 1 card
+   No Bootstrap grid is used for .media-card-group.
+   ========================================================= */
 
-.check-list li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: #0284c7;
-    font-weight: bold;
-}
-
-
-.steps-list {
-    padding-left: 25px;
-}
-
-.steps-list li {
-    padding-left: 10px;
-    margin-bottom: 25px;
-}
-
-.steps-list strong {
-    display: block;
-    font-size: 18px;
-    margin-bottom: 5px;
-}
-
-.steps-list p {
-    color: #6b7280;
-}
-
-
-.team-grid {
+.media-card-group {
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
-    gap: 30px;
-    max-width: 850px;
-    margin: 0 auto;
+    gap: 1.5rem;
 }
 
-.team-card {
-    flex: 1 1 320px;
-    background-color: white;
-    padding: 35px;
-
+.media-car-card {
+    flex: 1 1 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #ffffff;
     border: 1px solid #e5e7eb;
-    border-radius: 12px;
+    border-radius: 0.75rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    text-align: center;
+.media-car-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.media-car-card > img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+.media-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.media-card-body > p {
+    flex-grow: 1;
+    color: var(--drivenow-muted);
+}
+
+.media-card-bottom {
+    border-top: 1px solid #e5e7eb;
+}
+
+.car-tags span {
+    background-color: #f1f5f9;
+    color: #475569;
+    border-radius: 0.35rem;
+    font-size: 0.78rem;
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .media-car-card {
+        flex: 1 1 calc(50% - 0.75rem);
+    }
+}
+
+@media (min-width: 992px) {
+    .media-car-card {
+        flex: 1 1 calc(33.333% - 1rem);
+    }
+}
+
+/* =========================================================
+   TASK 8 - BOOTSTRAP CARDS
+   ========================================================= */
+
+.bootstrap-car-card,
+.team-card {
+    border-color: #e5e7eb;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bootstrap-car-card:hover,
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12) !important;
+}
+
+.bootstrap-car-card .card-img-top {
+    height: 230px;
+    object-fit: cover;
 }
 
 .profile-img {
     width: 130px;
     height: 130px;
-
     object-fit: cover;
-
-    border-radius: 50%;
-
-    margin: 0 auto 20px;
-
     border: 5px solid #e0f2fe;
 }
 
-.team-card h3 {
-    margin-bottom: 5px;
-}
-
-.team-card .role {
-    color: #0284c7;
-    font-weight: bold;
-}
-
-.team-card > p:not(.role) {
-    color: #6b7280;
-}
-
-.team-card h4 {
-    margin: 20px 0 10px;
-    text-align: left;
-}
-
-.team-card ul {
-    text-align: left;
-    color: #6b7280;
-}
-
-
-.booking-layout {
-    display: flex;
-    gap: 35px;
-    align-items: flex-start;
-}
+/* =========================================================
+   TASK 9 - BOOTSTRAP FORM
+   Only theme colors are customized; layout/spacing uses Bootstrap.
+   ========================================================= */
 
 .form-container {
-    flex: 2;
-    background-color: white;
-
-    padding: 35px;
-
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
 }
 
-.form-container h2 {
-    margin-bottom: 10px;
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+    border-color: var(--drivenow-blue);
+    box-shadow: 0 0 0 0.25rem rgba(2, 132, 199, 0.15);
 }
 
-.form-intro {
-    color: #6b7280;
-    margin-bottom: 30px;
+.form-check-input:checked {
+    background-color: var(--drivenow-blue);
+    border-color: var(--drivenow-blue);
 }
 
-#booking-form {
-    width: 100%;
+/* =========================================================
+   TASK 6 - BOOTSTRAP BUTTON THEME
+   ========================================================= */
+
+.btn-primary {
+    --bs-btn-bg: #0284c7;
+    --bs-btn-border-color: #0284c7;
+    --bs-btn-hover-bg: #0369a1;
+    --bs-btn-hover-border-color: #0369a1;
+    --bs-btn-active-bg: #075985;
+    --bs-btn-active-border-color: #075985;
 }
 
-.form-group {
-    margin-bottom: 20px;
+.btn-outline-primary {
+    --bs-btn-color: #0284c7;
+    --bs-btn-border-color: #0284c7;
+    --bs-btn-hover-bg: #0284c7;
+    --bs-btn-hover-border-color: #0284c7;
 }
 
-.form-group label,
-.radio-group legend {
-    display: block;
+/* =========================================================
+   TASK 7 - BOOTSTRAP CAROUSEL
+   ========================================================= */
 
-    margin-bottom: 7px;
-
-    color: #374151;
-    font-weight: bold;
+.carousel-car-image {
+    height: 280px;
+    object-fit: cover;
+    filter: brightness(0.8);
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-
-    padding: 12px 14px;
-
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-
-    background-color: white;
-
-    font-family: inherit;
-    font-size: 15px;
-
-    outline: none;
-
-    transition: 0.3s ease;
+.carousel-caption {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    border-color: #0284c7;
-    box-shadow: 0 0 0 3px #e0f2fe;
+@media (min-width: 768px) {
+    .carousel-car-image {
+        height: 430px;
+    }
 }
 
-.form-group textarea {
-    resize: vertical;
+@media (min-width: 992px) {
+    .carousel-car-image {
+        height: 520px;
+    }
 }
 
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.radio-group {
-    border: none;
-    margin-bottom: 20px;
-}
-
-.radio-option {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-
-    margin-right: 25px;
-
-    font-weight: normal;
-}
-
-.radio-option input {
-    width: auto;
-}
-
-.submit-btn {
-    width: 100%;
-    font-size: 16px;
-}
-
-.booking-info {
-    flex: 1;
-    background-color: #111827;
-    color: white;
-
-    padding: 30px;
-
-    border-radius: 12px;
-}
-
-.booking-info h2 {
-    font-size: 28px;
-    margin-bottom: 15px;
-}
-
-.booking-info > p {
-    color: #cbd5e1;
-}
-
-.booking-info h3 {
-    margin: 25px 0 15px;
-}
-
-.booking-steps {
-    padding-left: 22px;
-}
-
-.booking-steps li {
-    margin-bottom: 15px;
-    color: #e5e7eb;
-}
-
-.notice {
-    margin-top: 30px;
-    padding: 20px;
-
-    background-color: #1f2937;
-    border-left: 4px solid #38bdf8;
-}
-
-.notice h3 {
-    margin-top: 0;
-}
-
-.notice p {
-    color: #cbd5e1;
-    margin-bottom: 0;
-}
-
-
-.table-container {
-    overflow-x: auto;
-
-    background-color: white;
-
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 700px;
-}
-
-table th {
-    background-color: #111827;
-    color: white;
-
-    padding: 16px;
-
-    text-align: left;
-}
-
-table td {
-    padding: 15px 16px;
-
-    border-bottom: 1px solid #e5e7eb;
-
-    color: #4b5563;
-}
-
-table tbody tr:hover {
-    background-color: #f0f9ff;
-}
-
-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
+/* =========================================================
+   CTA + FOOTER
+   ========================================================= */
 
 .cta {
-    padding: 80px 25px;
-
-    text-align: center;
-
-    background-color: #0284c7;
-    color: white;
-}
-
-.cta h2 {
-    margin-bottom: 15px;
+    background-color: var(--drivenow-blue);
+    color: #ffffff;
 }
 
 .cta p {
@@ -718,293 +376,32 @@ table tbody tr:last-child td {
 }
 
 .footer {
-    background-color: #111827;
-    color: white;
-
-    padding: 50px 25px 20px;
+    background-color: var(--drivenow-dark);
+    color: #ffffff;
 }
 
-.footer-content {
-    max-width: 1150px;
-    margin: 0 auto 35px;
-
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 50px;
-}
-
-.footer h3 {
-    margin-bottom: 12px;
-}
-
-.footer p {
+.footer p,
+.footer-links a {
     color: #9ca3af;
-}
-
-.footer-links {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-links li {
-    margin-bottom: 8px;
 }
 
 .footer-links a {
-    color: #9ca3af;
-    transition: 0.3s ease;
+    text-decoration: none;
 }
 
 .footer-links a:hover {
     color: #38bdf8;
 }
 
-.footer-bottom {
-    max-width: 1150px;
-    margin: 0 auto;
-
-    padding-top: 20px;
-
-    border-top: 1px solid #374151;
-
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.footer-bottom p {
-    margin: 0;
-    font-size: 14px;
-}
-
-
-
-.about-intro p {
-    color: #6b7280;
-}
-
-.about-intro h2 {
-    margin-bottom: 20px;
-}
-
-
-
-@media (max-width: 900px) {
-
-    h1 {
-        font-size: 42px;
-    }
-
-    h2 {
-        font-size: 30px;
-    }
-
-    .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .hero-content {
-        margin: 0 auto;
-    }
-
-    .feature-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .car-card {
-        flex-basis: calc(50% - 25px);
-    }
-
-    .booking-layout {
+/* Small-screen button group safety */
+@media (max-width: 575.98px) {
+    .btn-group {
+        display: flex;
         flex-direction: column;
-    }
-
-    .form-container,
-    .booking-info {
         width: 100%;
     }
 
-}
-
-
-@media (max-width: 650px) {
-
-    .navbar {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .nav-menu {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .nav-menu a {
-        padding: 8px 10px;
-        font-size: 14px;
-    }
-
-    .hero {
-        padding-top: 50px;
-    }
-
-    .hero h1 {
-        font-size: 38px;
-    }
-
-    .hero-image img {
-        height: 280px;
-    }
-
-    .feature-grid,
-    .two-column {
-        grid-template-columns: 1fr;
-    }
-
-    .car-grid,
-    .team-grid {
-        flex-direction: column;
-    }
-
-    .car-card,
-    .team-card {
-        flex-basis: 100%;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-    }
-
-}
-
-/* =========================================================
-   ASSIGNMENT #2 - ONLY NEW REQUIREMENTS
-   Existing navigation, colors and general design are unchanged.
-   ========================================================= */
-
-/* Task 3: Page layout with named Grid Areas */
-.assignment-grid-layout {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas:
-        "grid-header grid-header"
-        "grid-sidebar grid-main"
-        "grid-footer grid-footer";
-    gap: 20px;
-}
-
-.assignment-grid-header {
-    grid-area: grid-header;
-    padding: 22px;
-    background-color: #111827;
-    color: white;
-    border-radius: 12px;
-}
-
-.assignment-grid-header p,
-.assignment-grid-footer p {
-    margin-bottom: 0;
-}
-
-.assignment-grid-sidebar {
-    grid-area: grid-sidebar;
-    padding: 22px;
-    background-color: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-}
-
-.assignment-grid-sidebar ul {
-    margin-top: 15px;
-}
-
-.assignment-grid-main {
-    grid-area: grid-main;
-    padding: 22px;
-    background-color: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-}
-
-.assignment-grid-footer {
-    grid-area: grid-footer;
-    padding: 18px 22px;
-    text-align: center;
-    background-color: #0284c7;
-    color: white;
-    border-radius: 12px;
-}
-
-/* Task 4: Image gallery with CSS Grid */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 220px;
-    gap: 20px;
-}
-
-.gallery-item {
-    position: relative;
-    overflow: hidden;
-    margin: 0;
-    border-radius: 12px;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.gallery-caption {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 14px;
-    color: white;
-    background-color: rgba(17, 24, 39, 0.85);
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.05);
-}
-
-.gallery-item:hover .gallery-caption {
-    transform: translateY(0);
-}
-
-@media (max-width: 900px) {
-    .assignment-grid-layout {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "grid-header"
-            "grid-sidebar"
-            "grid-main"
-            "grid-footer";
-    }
-
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 650px) {
-    .gallery-grid {
-        grid-template-columns: 1fr;
+    .btn-group > .btn {
+        border-radius: 0.375rem !important;
     }
 }
