@@ -68,21 +68,5 @@ car-rental-platform/
 
 Both team members worked with the shared CSS file and tested the website.
 
-## How to Run
-
-1. Download or clone the project.
-2. Open the project folder.
-3. Open `index.html` in a web browser.
-4. Use the navigation bar to open the other pages.
-
-## Live Website
-
-GitHub Pages:
-
-`https://your-username.github.io/car-rental-platform/`
-
-Replace the URL above with the real GitHub Pages link.
-
 ## Author
-
-DriveNow Team
+**Sherkhan017**
