@@ -69,4 +69,8 @@ car-rental-platform/
 Both team members worked with the shared CSS file and tested the website.
 
 ## Author
-**Sherkhan017**
+**Sherkhan & Bekzat** 
+
+
+https://sherkhan017.github.io/car-rental-platform/
+
