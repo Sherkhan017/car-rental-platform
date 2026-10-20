@@ -1,8 +1,4 @@
-/* DriveNow - Assignment #3
-   Bootstrap 5.3 + custom CSS
-   Custom CSS keeps the original DriveNow colors and adds the CSS-only media-query task.
-   Spacing is handled mainly with Bootstrap m-/p-/gap utilities in HTML.
-*/
+
 
 :root {
     --drivenow-dark: #111827;
@@ -14,16 +10,12 @@
 }
 
 body {
+    --page-background: #f7f8fa;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f7f8fa;
+    background-color: var(--page-background);
     color: var(--drivenow-text);
     line-height: 1.6;
 }
-
-/* =========================================================
-   TASK 1 - RESPONSIVE TYPOGRAPHY
-   Mobile is the default, then tablet and desktop breakpoints.
-   ========================================================= */
 
 h1 {
     font-size: 2rem;
@@ -67,10 +59,7 @@ p {
     }
 }
 
-/* =========================================================
-   TASK 5 - BOOTSTRAP NAVBAR + OFFCANVAS SIDEBAR
-   The hamburger is intentionally visible on every screen size.
-   ========================================================= */
+
 
 .site-header {
     z-index: 1030;
@@ -121,10 +110,6 @@ p {
     color: #ffffff;
     background-color: var(--drivenow-blue);
 }
-
-/* =========================================================
-   GENERAL DESIGN
-   ========================================================= */
 
 .hero-section {
     background-color: #f7f8fa;
@@ -194,13 +179,6 @@ p {
     font-size: 2.2rem;
 }
 
-/* =========================================================
-   TASK 2 - CSS-ONLY RESPONSIVE CARD GROUP
-   Desktop: 3 cards
-   Tablet: 2 cards
-   Mobile: 1 card
-   No Bootstrap grid is used for .media-card-group.
-   ========================================================= */
 
 .media-card-group {
     display: flex;
@@ -265,9 +243,6 @@ p {
     }
 }
 
-/* =========================================================
-   TASK 8 - BOOTSTRAP CARDS
-   ========================================================= */
 
 .bootstrap-car-card,
 .team-card {
@@ -295,10 +270,6 @@ p {
     border: 5px solid #e0f2fe;
 }
 
-/* =========================================================
-   TASK 9 - BOOTSTRAP FORM
-   Only theme colors are customized; layout/spacing uses Bootstrap.
-   ========================================================= */
 
 .form-container {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
@@ -316,10 +287,6 @@ p {
     border-color: var(--drivenow-blue);
 }
 
-/* =========================================================
-   TASK 6 - BOOTSTRAP BUTTON THEME
-   ========================================================= */
-
 .btn-primary {
     --bs-btn-bg: #0284c7;
     --bs-btn-border-color: #0284c7;
@@ -335,10 +302,6 @@ p {
     --bs-btn-hover-bg: #0284c7;
     --bs-btn-hover-border-color: #0284c7;
 }
-
-/* =========================================================
-   TASK 7 - BOOTSTRAP CAROUSEL
-   ========================================================= */
 
 .carousel-car-image {
     height: 280px;
@@ -361,10 +324,6 @@ p {
         height: 520px;
     }
 }
-
-/* =========================================================
-   CTA + FOOTER
-   ========================================================= */
 
 .cta {
     background-color: var(--drivenow-blue);
@@ -393,7 +352,6 @@ p {
     color: #38bdf8;
 }
 
-/* Small-screen button group safety */
 @media (max-width: 575.98px) {
     .btn-group {
         display: flex;
@@ -403,5 +361,145 @@ p {
 
     .btn-group > .btn {
         border-radius: 0.375rem !important;
+    }
+}
+
+#booking-form .is-invalid {
+    border-color: #dc3545;
+}
+
+#bookingStatus:empty {
+    display: none;
+}
+
+.faq-item {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+    padding: 18px 20px;
+    border: 0;
+    background: transparent;
+    color: #1f2937;
+    text-align: left;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.faq-question:hover,
+.faq-question[aria-expanded="true"] {
+    background-color: #f0f9ff;
+}
+
+.faq-question:focus-visible {
+    outline: 3px solid #0284c7;
+    outline-offset: -3px;
+}
+
+.faq-symbol {
+    color: #0284c7;
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+
+.faq-answer-inner {
+    padding: 4px 20px 18px;
+    color: #475569;
+}
+
+.faq-answer-inner p {
+    margin-bottom: 0;
+}
+
+
+.popup-overlay[hidden] {
+    display: none;
+}
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background-color: rgba(15, 23, 42, 0.75);
+}
+
+.popup-window {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 14px;
+    background: #fff;
+    padding: 28px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.popup-close {
+    position: absolute;
+    right: 16px;
+    top: 12px;
+    border: 0;
+    background: transparent;
+    font-size: 1.9rem;
+    line-height: 1;
+    color: #475569;
+    cursor: pointer;
+}
+
+body.popup-open {
+    overflow: hidden;
+}
+
+body,
+.hero-section,
+.section-light,
+.custom-card-section,
+.theme-demo {
+    transition: background-color 0.3s ease;
+}
+
+.hero-section,
+.section-light,
+.custom-card-section,
+.theme-demo {
+    background-color: var(--page-background);
+}
+
+/* Task 5: Current time in the footer */
+.live-clock {
+    color: #7dd3fc;
+    font-weight: 600;
+}
+
+@media (max-width: 575px) {
+    .popup-window {
+        padding: 22px 18px;
+    }
+    .faq-question {
+        padding: 16px;
+    }
+    .faq-answer-inner {
+        padding: 0 16px 16px;
     }
 }

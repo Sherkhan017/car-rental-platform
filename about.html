@@ -236,14 +236,88 @@
         </div>
     </section>
 
+
+    <section class="section-light py-4 py-md-5" id="faqSection">
+        <div class="container">
+            <div class="section-title text-center mx-auto mb-4">
+                <p class="section-label mb-2">HELP CENTER</p>
+                <h2>Frequently Asked Questions</h2>
+                <p>Click a question to see the answer.</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-9">
+                    <div class="faq-item">
+                        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faqAnswer1">
+                            What documents do I need to rent a car? <span class="faq-symbol" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer" id="faqAnswer1">
+                            <div class="faq-answer-inner"><p>You usually need a valid driving license and an identity document.</p></div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faqAnswer2">
+                            Can I choose the car before booking? <span class="faq-symbol" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer" id="faqAnswer2">
+                            <div class="faq-answer-inner"><p>Yes. Visit the Cars page, compare vehicles, and choose your preferred car.</p></div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faqAnswer3">
+                            How do I make a booking request? <span class="faq-symbol" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer" id="faqAnswer3">
+                            <div class="faq-answer-inner"><p>Go to the Booking page and complete the form. This is a student demo website, so requests are not sent to a server.</p></div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faqAnswer4">
+                            Can I contact the DriveNow team? <span class="faq-symbol" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer" id="faqAnswer4">
+                            <div class="faq-answer-inner"><p>Yes. Click the Contact Us button below to open the contact form demo.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="cta text-center py-5 px-2 px-sm-3">
         <div class="container">
             <h2 class="mb-3">Have Questions?</h2>
-            <p class="mb-3">Send us a booking request and we will contact you.</p>
-            <a href="booking.html" class="btn btn-light btn-lg">Contact Us</a>
+            <p class="mb-3">Click below to open our contact form demo.</p>
+            <button type="button" class="btn btn-light btn-lg" id="openContactPopup">Contact Us</button>
         </div>
     </section>
 </main>
+
+
+<div class="popup-overlay" id="contactPopup" hidden>
+    <div class="popup-window" role="dialog" aria-modal="true" aria-labelledby="contactPopupTitle">
+        <button type="button" class="popup-close" id="closeContactPopup" aria-label="Close contact form">&times;</button>
+        <h2 class="h3 mb-2" id="contactPopupTitle">Contact Us</h2>
+        <p class="text-secondary mb-3">Have a question? Try our contact form.</p>
+        <form id="contactForm">
+            <div class="mb-3">
+                <label class="form-label" for="contactName">Name</label>
+                <input class="form-control" type="text" id="contactName" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="contactEmail">Email</label>
+                <input class="form-control" type="email" id="contactEmail" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="contactMessage">Your message</label>
+                <textarea class="form-control" id="contactMessage" name="message" rows="4" required></textarea>
+            </div>
+            <button class="btn btn-primary w-100" type="submit">Submit Form</button>
+            <div id="contactStatus" role="status" aria-live="polite"></div>
+        </form>
+    </div>
+</div>
+
+
 
 <footer class="footer py-5 px-2 px-sm-3">
     <div class="container">
@@ -251,6 +325,7 @@
             <div class="col-12 col-md-8">
                 <h3 class="h5 mb-2">DriveNow</h3>
                 <p class="mb-0">Simple and comfortable car rental for every journey.</p>
+                <p class="small mt-2 mb-0">Local date &amp; time: <span id="liveDateTime" class="live-clock">Loading...</span></p>
             </div>
             <div class="col-12 col-md-4">
                 <h3 class="h5 mb-2">Quick Links</h3>
@@ -269,5 +344,6 @@
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
