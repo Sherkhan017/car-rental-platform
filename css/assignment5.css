@@ -1,0 +1,129 @@
+.assignment5-panel {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.9rem;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+.planner-panel {
+    max-width: 760px;
+}
+
+.finder-filter[aria-pressed="true"] {
+    color: #ffffff;
+    background-color: #0284c7;
+    border-color: #0284c7;
+}
+
+.finder-card {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.finder-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.finder-card .card-img-top {
+    height: 190px;
+    object-fit: cover;
+}
+
+.rating-stars {
+    display: inline-flex;
+    width: fit-content;
+    gap: 0.15rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.rating-star {
+    padding: 0.15rem 0.28rem;
+    border: 0;
+    background: transparent;
+    color: #94a3b8;
+    font-size: 1.65rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.rating-star.is-selected {
+    color: #f59e0b;
+}
+
+.rating-star:hover,
+.rating-star:focus-visible {
+    color: #d97706;
+    transform: scale(1.12);
+}
+
+.rating-star.rating-pop {
+    transform: scale(1.3);
+}
+
+.rating-message {
+    color: #475569;
+}
+
+.selection-highlight {
+    display: inline-block;
+    border-radius: 0.35rem;
+    padding: 0.35rem 0.55rem;
+    background-color: #e0f2fe;
+    transition: background-color 0.25s ease;
+}
+
+.planner-step {
+    animation: planner-fade-in 0.25s ease both;
+}
+
+.planner-step.step-arrive {
+    animation: planner-slide-in 0.28s ease both;
+}
+
+.planner-success {
+    animation: planner-fade-in 0.3s ease both;
+}
+
+.sound-control {
+    min-width: 7rem;
+}
+
+@keyframes planner-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes planner-slide-in {
+    from { opacity: 0; transform: translateX(12px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@media (max-width: 575.98px) {
+    .finder-filters {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .finder-filters .btn {
+        white-space: normal;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .finder-card,
+    .rating-star,
+    .rating-stars,
+    .selection-highlight {
+        transition-duration: 0.01ms;
+    }
+
+    .planner-step,
+    .planner-step.step-arrive,
+    .planner-success {
+        animation-duration: 0.01ms;
+    }
+}
