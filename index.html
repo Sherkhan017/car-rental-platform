@@ -17,13 +17,22 @@
 <header class="site-header sticky-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-2 px-sm-3 px-lg-4" aria-label="Main navigation">
         <div class="container-fluid">
+<button type="button" class="theme-toggle me-2" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode">
+                <svg class="theme-icon theme-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20.5 14.1A8.5 8.5 0 0 1 9.9 3.5a8.5 8.5 0 1 0 10.6 10.6Z"/>
+                </svg>
+                <svg class="theme-icon theme-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"/>
+                    <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+                </svg>
+            </button>
             <button class="navbar-toggler sidebar-toggle me-2" type="button"
                     data-bs-toggle="offcanvas" data-bs-target="#mainSidebar"
                     aria-controls="mainSidebar" aria-label="Open navigation menu">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand logo me-auto" href="index.html">Drive<span>Now</span></a>
-            <button type="button" class="btn btn-outline-light btn-sm theme-toggle me-2" aria-pressed="false">Dark Mode</button>
+            
             <div class="collapse navbar-collapse justify-content-end">
                 <ul class="navbar-nav align-items-lg-center gap-lg-2">
                     <li class="nav-item"><a class="nav-link active" href="index.html" aria-current="page">Home</a></li>
@@ -31,7 +40,6 @@
                     <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                 </ul>
-                <span class="keyboard-hint ms-lg-3 small">← → Switch pages</span>
             </div>
         </div>
     </nav>
