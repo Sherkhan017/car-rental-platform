@@ -100,15 +100,95 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
+        // Show clear errors for invalid input in the contact form.
+        contactForm.noValidate = true;
+        const contactFields = [
+            document.getElementById("contactName"),
+            document.getElementById("contactEmail"),
+            document.getElementById("contactMessage")
+        ];
+
+        function contactError(input) {
+            const value = input.value.trim();
+            if (!value) return "This field is required.";
+
+            if (input.id === "contactName") {
+                const namePattern = /^[\p{L}][\p{L} .'-]*$/u;
+                const letters = value.match(/\p{L}/gu) || [];
+                if (letters.length < 2 || !namePattern.test(value)) {
+                    return "Enter a name with at least 2 letters (no numbers).";
+                }
+            }
+
+            if (input.id === "contactEmail") {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+                if (!emailPattern.test(value)) {
+                    return "Enter a valid email, for example name@gmail.com.";
+                }
+            }
+
+            if (input.id === "contactMessage" && value.length < 10) {
+                return "Your message must contain at least 10 characters.";
+            }
+
+            return "";
+        }
+
+        function validateContactField(input) {
+            const message = contactError(input);
+            const errorId = input.id + "Error";
+            let feedback = document.getElementById(errorId);
+
+            if (message) {
+                input.classList.add("is-invalid");
+                input.setAttribute("aria-invalid", "true");
+                if (!feedback) {
+                    feedback = document.createElement("div");
+                    feedback.id = errorId;
+                    feedback.className = "invalid-feedback d-block";
+                    input.insertAdjacentElement("afterend", feedback);
+                }
+                feedback.textContent = message;
+                return false;
+            }
+
+            input.classList.remove("is-invalid");
+            input.removeAttribute("aria-invalid");
+            if (feedback) feedback.remove();
+            return true;
+        }
+
+        contactFields.forEach(function (input) {
+            input.addEventListener("input", function () {
+                if (input.classList.contains("is-invalid")) {
+                    validateContactField(input);
+                }
+                contactStatus.textContent = "";
+                contactStatus.className = "";
+            });
+        });
+
         contactForm.addEventListener("submit", function (event) {
             event.preventDefault();
-            if (!contactForm.checkValidity()) {
-                contactForm.reportValidity();
+            let firstInvalid = null;
+
+            contactFields.forEach(function (input) {
+                if (!validateContactField(input) && !firstInvalid) {
+                    firstInvalid = input;
+                }
+            });
+
+            if (firstInvalid) {
+                contactStatus.textContent = "Please correct the highlighted fields.";
+                contactStatus.className = "alert alert-danger mt-3 mb-0";
+                firstInvalid.focus();
                 return;
             }
-            contactStatus.textContent = "Form completed! This is a demo, so no message was sent.";
+
+            contactStatus.textContent = "All fields are valid! This is a demo, so no message was sent.";
             contactStatus.className = "alert alert-success mt-3 mb-0";
             contactForm.reset();
+            contactFields.forEach(validateContactField);
         });
     }
 

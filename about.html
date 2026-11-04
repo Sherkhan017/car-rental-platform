@@ -327,18 +327,19 @@
         <button type="button" class="popup-close" id="closeContactPopup" aria-label="Close contact form">&times;</button>
         <h2 class="h3 mb-2" id="contactPopupTitle">Contact Us</h2>
         <p class="text-secondary mb-3">Have a question? Try our contact form.</p>
-        <form id="contactForm">
+        <form id="contactForm" novalidate>
             <div class="mb-3">
                 <label class="form-label" for="contactName">Name</label>
-                <input class="form-control" type="text" id="contactName" name="name" required>
+                <input class="form-control" type="text" id="contactName" name="name" autocomplete="name" minlength="2" maxlength="60" required>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="contactEmail">Email</label>
-                <input class="form-control" type="email" id="contactEmail" name="email" required>
+                <input class="form-control" type="email" id="contactEmail" name="email" autocomplete="email" maxlength="254" required>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="contactMessage">Your message</label>
-                <textarea class="form-control" id="contactMessage" name="message" rows="4" required></textarea>
+                <textarea class="form-control" id="contactMessage" name="message" rows="4" minlength="10" maxlength="1000" required></textarea>
+                <div class="form-text">At least 10 characters.</div>
             </div>
             <button class="btn btn-primary w-100" type="submit">Submit Form</button>
             <div id="contactStatus" role="status" aria-live="polite"></div>
