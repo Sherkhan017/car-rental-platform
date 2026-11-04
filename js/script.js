@@ -188,7 +188,6 @@ document.addEventListener("DOMContentLoaded", function () {
             contactStatus.textContent = "All fields are valid! This is a demo, so no message was sent.";
             contactStatus.className = "alert alert-success mt-3 mb-0";
             contactForm.reset();
-            contactFields.forEach(validateContactField);
         });
     }
 
