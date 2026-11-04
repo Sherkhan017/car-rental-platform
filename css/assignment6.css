@@ -1,0 +1,143 @@
+/* DriveNow - Assignment 6: jQuery components and Dark/Light mode */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    z-index: 2100;
+    pointer-events: none;
+    background: transparent;
+}
+#scrollProgressBar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #38bdf8, #0284c7, #7c3aed);
+    transition: width 0.08s linear;
+}
+.keyboard-hint { color: #cbd5e1; white-space: nowrap; }
+.theme-toggle { white-space: nowrap; }
+.stats-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+.stat-number { display: block; font-size: 2.3rem; line-height: 1.2; color: #0284c7; }
+.car-search-wrap { position: relative; }
+.search-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+    max-height: 240px;
+    overflow: auto;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
+}
+.search-suggestions[hidden] { display: none !important; }
+.finder-card mark { background: #fde68a; color: #111827; border-radius: 2px; padding: 0 2px; }
+.drivenow-toast {
+    position: fixed;
+    right: 18px;
+    bottom: 20px;
+    z-index: 2200;
+    max-width: min(340px, calc(100vw - 36px));
+    padding: 12px 18px;
+    color: #fff;
+    background: #075985;
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    font-size: 0.95rem;
+}
+/* Dark mode: keep all existing Bootstrap and Assignment 1-5 components readable. */
+body.dark-mode {
+    --page-background: #0f172a !important;
+    --drivenow-light: #111827;
+    --drivenow-text: #f1f5f9;
+    --drivenow-muted: #cbd5e1;
+    background: #0f172a !important;
+    color: #f1f5f9;
+}
+body.dark-mode main,
+body.dark-mode .hero-section,
+body.dark-mode .section-light,
+body.dark-mode .custom-card-section,
+body.dark-mode .theme-demo,
+body.dark-mode .stats-section {
+    background: #0f172a !important;
+    color: #f1f5f9;
+}
+body.dark-mode .page-banner { background: #111827; }
+body.dark-mode .feature-card,
+body.dark-mode .info-box,
+body.dark-mode .media-car-card,
+body.dark-mode .bootstrap-car-card,
+body.dark-mode .team-card,
+body.dark-mode .form-container,
+body.dark-mode .assignment5-panel,
+body.dark-mode .stats-card,
+body.dark-mode .faq-item,
+body.dark-mode .popup-window,
+body.dark-mode .card,
+body.dark-mode .table-responsive {
+    background-color: #1e293b !important;
+    color: #f1f5f9 !important;
+    border-color: #475569 !important;
+}
+body.dark-mode .feature-card p,
+body.dark-mode .media-card-body > p,
+body.dark-mode .hero-text,
+body.dark-mode .faq-answer-inner,
+body.dark-mode .section-title p,
+body.dark-mode .card-text,
+body.dark-mode .form-text,
+body.dark-mode .rating-message,
+body.dark-mode .text-secondary,
+body.dark-mode .text-muted {
+    color: #cbd5e1 !important;
+}
+body.dark-mode .faq-question,
+body.dark-mode .faq-question:hover,
+body.dark-mode .faq-question[aria-expanded="true"] {
+    color: #f1f5f9;
+    background: #1e293b;
+}
+body.dark-mode .faq-question:hover,
+body.dark-mode .faq-question[aria-expanded="true"] {
+    background: #334155;
+}
+body.dark-mode .list-group-item,
+body.dark-mode .form-control,
+body.dark-mode .form-select,
+body.dark-mode .input-group-text,
+body.dark-mode .search-suggestions .list-group-item,
+body.dark-mode .form-check-label {
+    background-color: #253449;
+    color: #f1f5f9;
+    border-color: #475569;
+}
+body.dark-mode .form-control::placeholder { color: #94a3b8; }
+body.dark-mode .form-control:focus,
+body.dark-mode .form-select:focus { background-color: #253449; color: #fff; }
+body.dark-mode .search-suggestions .list-group-item:hover { background: #334155; }
+body.dark-mode .table { --bs-table-bg: #1e293b; --bs-table-color: #e2e8f0; --bs-table-border-color: #475569; }
+body.dark-mode .table-dark { --bs-table-bg: #111827; --bs-table-color: #f8fafc; }
+body.dark-mode .selection-highlight { background: #334155; color: #f1f5f9; }
+body.dark-mode .car-tags span { background: #334155; color: #f1f5f9; }
+body.dark-mode .car-search-wrap mark { background: #fde68a; color: #111827; }
+body.dark-mode .btn-outline-primary { color: #7dd3fc; border-color: #38bdf8; }
+body.dark-mode .btn-outline-primary:hover { color: #08101b; background: #38bdf8; }
+body.dark-mode .btn-outline-secondary { color: #e2e8f0; border-color: #94a3b8; }
+body.dark-mode .btn-outline-secondary:hover { color: #111827; background: #e2e8f0; }
+body.dark-mode .text-primary { color: #7dd3fc !important; }
+body.dark-mode .section-label,
+body.dark-mode .car-category { color: #7dd3fc; }
+body.dark-mode .cta { background: #0369a1; }
+body.dark-mode footer { background: #0b1220; }
+@media (max-width: 767px) {
+    .keyboard-hint { display: none; }
+    .theme-toggle { font-size: 0.8rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    #scrollProgressBar { transition: none; }
+}
