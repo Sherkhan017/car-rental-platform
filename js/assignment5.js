@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const image = document.createElement("img");
         image.className = "card-img-top";
-        image.setAttribute("data-src", car.image);
+        image.src = car.image;
         image.loading = "lazy";
         image.alt = car.name;
 
