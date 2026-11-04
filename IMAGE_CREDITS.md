@@ -1,6 +1,6 @@
 # New car photo credits
 
-The 16 newly added car photos are from Wikimedia Commons and remain under their original free licenses. The site uses Wikimedia thumbnail URLs. When available, a fallback car cutout is served from the open-license [hypercar-colorscripts project](https://github.com/Tirthraj-Raval/hypercar-colorscripts), which also identifies the original author and license. No downloaded copies of the new images are stored in this repository.
+The 16 new vehicle pictures originate from Wikimedia Commons photographs and keep their original free licenses. Most are displayed as Wikimedia thumbnails. BMW X5 M and Bentley Continental GTC use photo-derived PNG cutouts served by the open-license [hypercar-colorscripts project](https://github.com/Tirthraj-Raval/hypercar-colorscripts); that project's cutouts are also used as fallback images for some models. The original photographers are credited below. The site does not store new image binaries in this repository.
 
 | Car model | Photographer | License | Wikimedia Commons source |
 | --- | --- | --- | --- |
