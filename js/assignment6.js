@@ -18,12 +18,17 @@
 
     function prepareImages() {
         const pictures = document.querySelectorAll("img[data-src]");
-        // Bootstrap's hidden carousel slides do not intersect the viewport.
-        // Load them together so Next/Previous never shows a blank slide.
+        // Load the hero image immediately, but keep other pictures lazy.
         pictures.forEach(function (image) {
-            if (image.closest(".carousel") || image.closest(".hero-section")) {
-                loadImage(image);
-            }
+            if (image.closest(".hero-section")) loadImage(image);
+        });
+
+        // Carousel slides are hidden until they become active.
+        document.querySelectorAll(".carousel").forEach(function (carousel) {
+            carousel.addEventListener("slide.bs.carousel", function (event) {
+                const nextImage = event.relatedTarget && event.relatedTarget.querySelector("img[data-src]");
+                if (nextImage) loadImage(nextImage);
+            });
         });
         if ("IntersectionObserver" in window) {
             const observer = new IntersectionObserver(function (entries) {
@@ -35,7 +40,9 @@
                 });
             }, { rootMargin: "300px" });
             pictures.forEach(function (image) {
-                if (image.hasAttribute("data-src")) observer.observe(image);
+                if (!image.hasAttribute("data-src")) return;
+                if (image.closest(".carousel") && !image.closest(".carousel-item.active")) return;
+                observer.observe(image);
             });
         } else {
             pictures.forEach(loadImage);
@@ -59,8 +66,12 @@
 
         function showTheme() {
             $("body").toggleClass("dark-mode", dark);
-            $(".theme-toggle").text(dark ? "Light Mode" : "Dark Mode")
-                .attr("aria-pressed", String(dark));
+            const label = dark ? "Switch to light mode" : "Switch to dark mode";
+            $(".theme-toggle").attr({
+                "aria-label": label,
+                "title": label,
+                "aria-pressed": String(dark)
+            });
         }
 
         showTheme();
@@ -210,9 +221,11 @@
             try {
                 if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error("Clipboard unavailable");
                 await navigator.clipboard.writeText(value);
-                $(button).text("✓ Copied!");
+                $(button).text("✓ Copied!").attr("title", "Copied to clipboard!");
                 window.driveNowToast("Copied to clipboard!");
-                window.setTimeout(function () { $(button).text("Copy car information"); }, 1400);
+                window.setTimeout(function () {
+                    $(button).text("Copy car information").removeAttr("title");
+                }, 1400);
             } catch (error) {
                 window.driveNowToast("Could not copy. Please use a secure HTTPS page.");
             }
