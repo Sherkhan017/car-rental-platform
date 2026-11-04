@@ -127,3 +127,15 @@
         animation-duration: 0.01ms;
     }
 }
+
+/* Extended car catalogue */
+.finder-card .card-img-top { min-height: 190px; background: #eef2f7; }
+.finder-card .car-photo-credit { font-size: 0.72rem; color: #64748b; }
+.finder-card .car-photo-unavailable {
+    height: 190px;
+    display: grid;
+    place-items: center;
+    background: #e2e8f0;
+    color: #475569;
+}
+body.dark-mode .finder-card .car-photo-unavailable { background: #334155; color: #e2e8f0; }

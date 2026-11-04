@@ -53,3 +53,9 @@ The website also keeps the previous assignments' features: Bootstrap navigation 
 Open `index.html` in a browser. The site uses Bootstrap 5 and jQuery 4 from CDNs, so it needs an internet connection to load those libraries. HTML, CSS, JavaScript and images use relative paths for GitHub Pages.
 
 This is a front-end demonstration. No real bookings or messages are sent to a server.
+
+## Extended catalogue
+
+The Car Finder contains 20 demo cars, with five models in each category (Comfort, Business, Premium, and Luxury). The search, car ratings, booking form and rental planner use the same car list. New photos are free-license Wikimedia Commons images served as remote thumbnails, with additional fallbacks for selected models. See [IMAGE_CREDITS.md](IMAGE_CREDITS.md) for the photo sources and licenses.
+
+An internet connection is needed to display the new remotely hosted car photos. Rental prices are illustrative student-project data, not real-time offers.

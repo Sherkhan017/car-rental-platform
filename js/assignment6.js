@@ -131,8 +131,9 @@
         // Tasks 1-3: Live search, autocomplete, and safe text highlighting.
         const $search = $("#carSearch");
         if ($search.length) {
-            const items = ["Toyota Camry", "Audi A6", "BMW 5 Series", "Mercedes E-Class",
-                "Comfort", "Business", "Premium", "Luxury"];
+            const items = (window.driveNowCatalog || []).map(function (car) {
+                return car.name;
+            }).concat(["Comfort", "Business", "Premium", "Luxury"]);
             const $suggestions = $("#carSearchSuggestions");
 
             function highlightText(element, query) {
