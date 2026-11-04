@@ -1,15 +1,21 @@
 # DriveNow — Car Rental Platform
 
-DriveNow is a responsive, static car-rental website built with HTML, CSS, Bootstrap 5, and vanilla JavaScript. It continues the same project across its assignments. There is no backend: the booking and contact forms and the rental planner are demonstrations and do not send or save reservations.
+DriveNow is our car rental website for Front-End Development. We started with HTML and CSS and continued the same project through Assignments 1–6.
+
+**Team:** DriveNow Team  
+**Group:** SE-2501  
+**Members:** Amangeldi Sherkhan, Bekzat Abilkhaev
+
+**Website:** https://sherkhan017.github.io/car-rental-platform/
 
 ## Pages
 
-- `index.html` — home page, background color control, and three-step Quick Rental Planner.
-- `cars.html` — car catalogue, category filters, and personal demo ratings.
-- `booking.html` — booking form with client-side validation.
-- `about.html` — team information, price table, car carousel, FAQ, and contact form popup.
+- `index.html` — home page, car information, statistics and Quick Rental Planner.
+- `cars.html` — car catalogue, search, category filters, ratings and copy button.
+- `booking.html` — booking request form with JavaScript validation and loading spinner.
+- `about.html` — team, price table, image carousel, FAQ and contact form.
 
-## Project structure
+## Project files
 
 ```text
 car-rental-platform/
@@ -19,51 +25,31 @@ car-rental-platform/
 ├── about.html
 ├── css/
 │   ├── style.css
-│   └── assignment5.css
+│   ├── assignment5.css
+│   └── assignment6.css
 ├── js/
 │   ├── script.js
-│   └── assignment5.js
+│   ├── assignment5.js
+│   └── assignment6.js
 ├── images/
-│   ├── audi1.webp
-│   ├── bmw.webp
-│   ├── camry.webp
-│   ├── gls.jpeg
-│   ├── hero-car.jpeg
-│   ├── k8.webp
-│   ├── luxury_car.jpg
-│   ├── mercedes.webp
-│   ├── premium_sedan.jpg
-│   ├── student1.jpg
-│   └── student2.jpg
-├── .gitignore
 └── README.md
 ```
 
-## Features
+## Assignment 6 — jQuery
 
-- Responsive navigation, including a Bootstrap offcanvas menu, and a car-image carousel.
-- Car catalogue with filtering for All, Comfort, Business, Premium, and Luxury.
-- Five-star personal demo rating for each car; these are not customer reviews.
-- Quick Rental Planner with car selection, rental dates, validation, and a review step. It does not create a real reservation.
-- Keyboard arrow navigation between focused menu links.
-- Short, user-triggered notification sounds with a mute control.
-- Booking form validation, FAQ accordion, contact form popup, background color changer, and live date and time.
-- CSS transitions and animations that respect reduced-motion preferences.
+- Real-time car search by name or category.
+- Autocomplete suggestions and highlighted search terms.
+- Scroll progress bar and animated statistics.
+- Loading spinner during the booking form demo.
+- Toast notifications and copy selected-car information.
+- Lazy loading for images, including carousel slides.
+- Dark/Light toggle at the left of the navigation bar. The choice is saved in the browser.
+- Left and right arrow keys switch pages when not typing or using an interactive component. Up and down arrows move focus between focused menu links.
 
-## JavaScript and CSS files
+The website also keeps the previous assignments' features: Bootstrap navigation and carousel, booking validation, FAQ, contact popup, live clock, background color control, car ratings and rental planner.
 
-- `js/script.js` — booking and contact form validation, FAQ accordion, contact popup, background color changer, and live clock.
-- `js/assignment5.js` — car data, category filtering, ratings, menu keyboard navigation, notification sound, and rental planner.
-- `css/style.css` — shared website styles.
-- `css/assignment5.css` — Assignment 5 component styles, responsive rules, and animations.
+## Running the project
 
-## Run locally
+Open `index.html` in a browser. The site uses Bootstrap 5 and jQuery 4 from CDNs, so it needs an internet connection to load those libraries. HTML, CSS, JavaScript and images use relative paths for GitHub Pages.
 
-Open `index.html` in a browser or serve the project folder with a static-file server. Bootstrap is loaded from jsDelivr, so an internet connection is needed for Bootstrap styles and components. Project images, CSS, and JavaScript use relative paths.
-
-## Team
-
-- **Team Name:** DriveNow Team
-- **Group:** SE-2501
-- **Team Members:** Amangeldi Sherkhan, Bekzat Abilkhaev
-- **Website:** <https://sherkhan017.github.io/car-rental-platform/>
+This is a front-end demonstration. No real bookings or messages are sent to a server.
