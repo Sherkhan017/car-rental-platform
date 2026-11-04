@@ -66,23 +66,47 @@ document.addEventListener("DOMContentLoaded", function () {
     function setUpMenuKeyboard() {
         document.addEventListener("keydown", function (event) {
             if (!["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft"].includes(event.key)) return;
-            if (!(event.target instanceof Element) ||
-                event.target.matches("input, textarea, select, [contenteditable='true']")) return;
+            if (!(event.target instanceof Element)) return;
+            if (event.target.matches("input, textarea, select") ||
+                event.target.closest("[contenteditable]:not([contenteditable='false'])")) return;
+            if (event.target.closest(".carousel, .rating-stars, #rentalPlanner, [role='dialog'], .popup-overlay")) return;
 
             const currentLink = event.target.closest(
                 "nav[aria-label='Main navigation'] .nav-link, nav[aria-label='Sidebar navigation'] .sidebar-link"
             );
-            if (!currentLink) return;
+            if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+                if (!currentLink) return;
+                const menu = currentLink.closest("nav");
+                const links = Array.from(menu.querySelectorAll(".nav-link, .sidebar-link"));
+                const currentIndex = links.indexOf(currentLink);
+                if (currentIndex === -1 || links.length < 2) return;
+                const nextIndex = (currentIndex + (event.key === "ArrowDown" ? 1 : -1) + links.length) % links.length;
+                event.preventDefault();
+                links[nextIndex].focus();
+                return;
+            }
 
-            const menu = currentLink.closest("nav");
-            const links = Array.from(menu.querySelectorAll(".nav-link, .sidebar-link"));
-            const currentIndex = links.indexOf(currentLink);
-            if (currentIndex === -1 || links.length < 2) return;
+            if (currentLink) {
+                const links = ["index.html", "cars.html", "booking.html", "about.html"];
+                const currentPage = window.location.pathname.split("/").pop() || "index.html";
+                const currentIndex = links.indexOf(currentPage);
+                if (currentIndex === -1) return;
+                const nextIndex = (currentIndex + (event.key === "ArrowRight" ? 1 : -1) + links.length) % links.length;
+                event.preventDefault();
+                window.location.href = links[nextIndex];
+                return;
+            }
 
-            const movesForward = event.key === "ArrowDown" || event.key === "ArrowRight";
-            const nextIndex = (currentIndex + (movesForward ? 1 : -1) + links.length) % links.length;
-            event.preventDefault();
-            links[nextIndex].focus();
+            if (event.target.matches("body, html") ||
+                !event.target.closest("a, button, [role='button'], [tabindex]:not([tabindex='-1'])")) {
+                const links = ["index.html", "cars.html", "booking.html", "about.html"];
+                const currentPage = window.location.pathname.split("/").pop() || "index.html";
+                const currentIndex = links.indexOf(currentPage);
+                if (currentIndex === -1) return;
+                const nextIndex = (currentIndex + (event.key === "ArrowRight" ? 1 : -1) + links.length) % links.length;
+                event.preventDefault();
+                window.location.href = links[nextIndex];
+            }
         });
     }
 
@@ -164,7 +188,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const image = document.createElement("img");
         image.className = "card-img-top";
-        image.src = car.image;
+        image.setAttribute("data-src", car.image);
+        image.loading = "lazy";
         image.alt = car.name;
 
         const body = document.createElement("div");
@@ -303,6 +328,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         button.textContent = "Select this car";
                     }
                 });
+                if (window.driveNowToast) {
+                    window.driveNowToast(selectedCar.name + " selected.");
+                }
             }
         });
 
