@@ -5,7 +5,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const colors = ["#f7f8fa", "#e0f2fe", "#fef3c7", "#dcfce7", "#f3e8ff"];
     const colorNames = ["Original", "Light Blue", "Light Yellow", "Light Green", "Light Purple"];
     const backgroundStorageKey = "drivenow-page-background";
-    const savedColor = localStorage.getItem(backgroundStorageKey);
+    let savedColor = null;
+    try {
+        savedColor = localStorage.getItem(backgroundStorageKey);
+    } catch (error) {
+        // Color selection still works when storage is unavailable.
+    }
     let colorIndex = colors.indexOf(savedColor);
     if (colorIndex < 0) colorIndex = 0;
     document.body.style.setProperty("--page-background", colors[colorIndex]);
@@ -38,7 +43,11 @@ document.addEventListener("DOMContentLoaded", function () {
         colorButton.addEventListener("click", function () {
             colorIndex = (colorIndex + 1) % colors.length;
             document.body.style.setProperty("--page-background", colors[colorIndex]);
-            localStorage.setItem(backgroundStorageKey, colors[colorIndex]);
+            try {
+                localStorage.setItem(backgroundStorageKey, colors[colorIndex]);
+            } catch (error) {
+                // Ignore storage restrictions.
+            }
             colorName.textContent = "Current color: " + colorNames[colorIndex];
         });
     }
@@ -108,14 +117,45 @@ document.addEventListener("DOMContentLoaded", function () {
         bookingForm.noValidate = true; // Show our own error messages instead of browser popups.
         let bookingPending = false;
 
+        function isValidName(value) {
+            return /^\p{L}+(?:[ '-]\p{L}+)*$/u.test(value.trim()) && value.trim().length >= 2;
+        }
+
+        function isValidEmail(value) {
+            return /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/.test(value.trim());
+        }
+
         function showError(input, message) {
             input.classList.add("is-invalid");
+            input.setAttribute("aria-invalid", "true");
 
             const feedback = document.createElement("div");
             feedback.className = "js-error text-danger small mt-1";
             feedback.textContent = message;
-            input.insertAdjacentElement("afterend", feedback);
+            feedback.id = input.id + "-error";
+            input.setAttribute("aria-describedby", feedback.id);
+            const after = input.closest(".input-group") || input;
+            after.insertAdjacentElement("afterend", feedback);
         }
+
+        function clearError(event) {
+            const input = event.target;
+            if (!input.matches("input, select, textarea")) return;
+            input.classList.remove("is-invalid");
+            input.removeAttribute("aria-invalid");
+            if (input.getAttribute("aria-describedby") === input.id + "-error") {
+                input.removeAttribute("aria-describedby");
+            }
+            const message = document.getElementById(input.id + "-error");
+            if (message) message.remove();
+            if (input.name === "payment") {
+                const paymentError = document.getElementById("payment-error");
+                if (paymentError) paymentError.remove();
+            }
+        }
+
+        bookingForm.addEventListener("input", clearError);
+        bookingForm.addEventListener("change", clearError);
 
         bookingForm.addEventListener("submit", function (event) {
             event.preventDefault(); // We do not have a backend server yet.
@@ -126,6 +166,10 @@ document.addEventListener("DOMContentLoaded", function () {
             });
             bookingForm.querySelectorAll(".is-invalid").forEach(function (input) {
                 input.classList.remove("is-invalid");
+                input.removeAttribute("aria-invalid");
+                if (input.getAttribute("aria-describedby") === input.id + "-error") {
+                    input.removeAttribute("aria-describedby");
+                }
             });
 
             const status = document.getElementById("bookingStatus");
@@ -134,6 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const name = document.getElementById("name");
             const email = document.getElementById("email");
+            const phone = document.getElementById("phone");
             const car = document.getElementById("car");
             const pickup = document.getElementById("pickup");
             const returnDate = document.getElementById("return");
@@ -149,19 +194,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
 
-            check(name, name.value.trim().length >= 2, "Please enter your full name.");
-            check(email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()), "Please enter a valid email address.");
-            check(car, car.value !== "", "Please select a car.");
-            check(pickup, pickup.value !== "", "Please choose a pick-up date.");
-            check(returnDate, returnDate.value !== "", "Please choose a return date.");
+            check(name, isValidName(name.value), "Enter your name using letters (at least 2 characters).");
+            check(email, isValidEmail(email.value), "Enter a valid email address.");
 
-            if (pickup.value && returnDate.value) {
-                check(returnDate, returnDate.value > pickup.value, "Return date must be after pick-up date.");
-            }
+            const phoneDigits = phone.value.replace(/\D/g, "");
+            check(phone, phone.value.trim() === "" || phoneDigits.length === 10,
+                "Enter 10 digits after +7.");
+
+            check(car, car.value !== "", "Please select a car.");
+
+            const now = new Date();
+            const today = now.getFullYear() + "-" +
+                String(now.getMonth() + 1).padStart(2, "0") + "-" +
+                String(now.getDate()).padStart(2, "0");
+
+            check(pickup, pickup.value !== "" && pickup.value >= today,
+                pickup.value ? "Pick-up date cannot be in the past." : "Please choose a pick-up date.");
+            check(returnDate, returnDate.value !== "" &&
+                (!pickup.value || returnDate.value > pickup.value),
+                returnDate.value ? "Return date must be after pick-up date." : "Please choose a return date.");
 
             if (!payment) {
                 const error = document.createElement("div");
                 error.className = "js-error text-danger small";
+                error.id = "payment-error";
                 error.textContent = "Please select a payment method.";
                 bookingForm.querySelector("fieldset").appendChild(error);
                 if (!firstInvalid) firstInvalid = document.getElementById("paymentCard");
@@ -191,6 +247,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     bookingPending = false;
                     status.textContent = "All fields are valid! This is a demo, so no booking request was sent.";
                     status.className = "alert alert-success mt-3";
+                    password.value = "";
+                    confirmPassword.value = "";
                     if (window.driveNowToast) {
                         window.driveNowToast("Demo booking completed. No request was sent.");
                     }
