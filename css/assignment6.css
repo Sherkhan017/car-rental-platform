@@ -15,8 +15,27 @@
     background: linear-gradient(90deg, #38bdf8, #0284c7, #7c3aed);
     transition: width 0.08s linear;
 }
-.keyboard-hint { color: #cbd5e1; white-space: nowrap; }
-.theme-toggle { white-space: nowrap; }
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    padding: 0;
+    color: #aeb7c4;
+    background: transparent;
+    border: 1px solid #64748b;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.theme-toggle:hover { color: #e2e8f0; background: #334155; }
+.theme-toggle:focus-visible { outline: 2px solid #94a3b8; outline-offset: 3px; }
+.theme-icon { display: block; pointer-events: none; }
+.theme-icon-sun { display: none; }
+body.dark-mode .theme-icon-moon { display: none; }
+body.dark-mode .theme-icon-sun { display: block; }
 .stats-card {
     background: #fff;
     border: 1px solid #e5e7eb;
@@ -135,8 +154,7 @@ body.dark-mode .car-category { color: #7dd3fc; }
 body.dark-mode .cta { background: #0369a1; }
 body.dark-mode footer { background: #0b1220; }
 @media (max-width: 767px) {
-    .keyboard-hint { display: none; }
-    .theme-toggle { font-size: 0.8rem; }
+    .theme-toggle { width: 34px; height: 34px; flex-basis: 34px; }
 }
 @media (prefers-reduced-motion: reduce) {
     #scrollProgressBar { transition: none; }
