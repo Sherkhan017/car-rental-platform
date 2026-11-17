@@ -4,8 +4,10 @@
     const USERS = 'drivenow-users';
     const SESSION = 'drivenow-session';
     const BOOKINGS = 'drivenow-bookings';
+    const PENDING_PLANNER = 'drivenow-pending-planner';
     const MAP_CACHE = 'drivenow-location-cache';
     const el = (id) => document.getElementById(id);
+    let selectedPickupLocation = null;
     const load = (key, fallback) => {
         try { const value = localStorage.getItem(key); return value ? JSON.parse(value) : fallback; }
         catch (error) { return fallback; }
@@ -47,6 +49,7 @@
         if (el('loginForm')) initLogin();
         if (el('profileUser')) initProfile();
         if (el('finalBookingForm')) initBooking();
+        if (el('plannerConfirm')) initPlannerBooking();
         if (el('findMap')) initMap();
         // Keep theme toggle operational when the optional jQuery CDN is unavailable.
         if (!window.jQuery) {
@@ -133,11 +136,83 @@
         if (!user) return;
         el('profileName').textContent = user.name;
         el('profileEmail').textContent = user.email;
+        savePendingPlannerRequest(user);
         el('logoutButton').addEventListener('click', () => {
             try { localStorage.removeItem(SESSION); } catch (error) { /* no session persisted */ }
             window.location.assign('index.html');
         });
         renderBookings(user.email);
+    }
+
+    function initPlannerBooking() {
+        window.addEventListener('drivenow:save-planner', (event) => {
+            const request = event.detail;
+            const now = new Date();
+            const today = [now.getFullYear(), String(now.getMonth() + 1).padStart(2, '0'), String(now.getDate()).padStart(2, '0')].join('-');
+            if (!request || typeof request.car !== 'string' || !request.car ||
+                typeof request.start !== 'string' || request.start < today ||
+                typeof request.end !== 'string' || request.end <= request.start) {
+                status('plannerStatus', 'Choose a car and valid rental dates before saving your plan.', 'danger');
+                return;
+            }
+
+            const user = getUser();
+            const plan = {
+                id: 'B' + Date.now(),
+                car: request.car,
+                start: request.start,
+                end: request.end,
+                status: 'Demo request'
+            };
+            if (!user) {
+                if (!save(PENDING_PLANNER, plan)) {
+                    status('plannerStatus', 'Could not save your plan. Browser storage is unavailable.', 'danger');
+                    return;
+                }
+                status('plannerStatus', 'Plan saved temporarily. Log in to add it to My Bookings.', 'warning');
+                addPlannerProfileLink();
+                return;
+            }
+
+            if (!savePlannerRequest(user, plan)) {
+                status('plannerStatus', 'Could not save your request. Browser storage is unavailable.', 'danger');
+                return;
+            }
+            status('plannerStatus', 'Request saved in My Bookings. This is a demo, not a real reservation.', 'success');
+            addPlannerProfileLink();
+        });
+    }
+
+    function savePendingPlannerRequest(user) {
+        const plan = load(PENDING_PLANNER, null);
+        if (!plan || typeof plan.id !== 'string' || typeof plan.car !== 'string' ||
+            typeof plan.start !== 'string' || typeof plan.end !== 'string') return;
+        if (savePlannerRequest(user, plan)) save(PENDING_PLANNER, null);
+    }
+
+    function savePlannerRequest(user, plan) {
+        const bookings = load(BOOKINGS, []);
+        if (bookings.some((booking) => booking.id === plan.id)) return true;
+        bookings.push({
+            id: plan.id,
+            email: user.email,
+            name: user.name,
+            phone: '',
+            car: plan.car,
+            start: plan.start,
+            end: plan.end,
+            status: plan.status || 'Demo request'
+        });
+        return save(BOOKINGS, bookings);
+    }
+
+    function addPlannerProfileLink() {
+        const element = el('plannerStatus');
+        const link = document.createElement('a');
+        link.className = 'ms-2';
+        link.href = getUser() ? 'profile.html' : 'login.html';
+        link.textContent = getUser() ? 'View My Profile' : 'Log in / Sign up';
+        element.append(' ', link);
     }
 
     function renderBookings(email) {
@@ -154,12 +229,32 @@
         bookings.slice().reverse().forEach((b) => {
             const row = document.createElement('div');
             row.className = 'border-bottom py-2';
+            const actions = document.createElement('div');
+            actions.className = 'booking-actions';
             const heading = document.createElement('strong');
             heading.textContent = b.car;
             const dates = document.createElement('p');
             dates.className = 'mb-2 small';
             dates.textContent = b.start + ' → ' + b.end + ' · ' + b.status;
             row.append(heading, dates);
+            if (typeof b.pickupLocation === 'string' && b.pickupLocation) {
+                const pickup = document.createElement('p');
+                pickup.className = 'mb-1 small';
+                pickup.textContent = 'Pick-up: ' + b.pickupLocation;
+                row.append(pickup);
+                const latitude = Number(b.pickupLatitude);
+                const longitude = Number(b.pickupLongitude);
+                if (Number.isFinite(latitude) && latitude >= -90 && latitude <= 90 &&
+                    Number.isFinite(longitude) && longitude >= -180 && longitude <= 180) {
+                    const mapLink = document.createElement('a');
+                    mapLink.href = 'https://www.openstreetmap.org/?mlat=' + latitude + '&mlon=' + longitude + '#map=14/' + latitude + '/' + longitude;
+                    mapLink.target = '_blank';
+                    mapLink.rel = 'noopener noreferrer';
+                    mapLink.className = 'small';
+                    mapLink.textContent = 'Open pick-up point on map';
+                    actions.append(mapLink);
+                }
+            }
             if (b.status !== 'Cancelled') {
                 const cancel = document.createElement('button');
                 cancel.type = 'button';
@@ -172,8 +267,9 @@
                     save(BOOKINGS, list);
                     renderBookings(email);
                 });
-                row.append(cancel);
+                actions.append(cancel);
             }
+            if (actions.hasChildNodes()) row.append(actions);
             element.append(row);
         });
     }
@@ -198,6 +294,9 @@
             const phone = el('bookingPhone').value.replace(/\D/g, '');
             const start = el('bookingStart').value;
             const end = el('bookingEnd').value;
+            const pickupLocation = selectedPickupLocation
+                ? selectedPickupLocation.name
+                : el('pickupPlace').value.trim();
             const now = new Date();
             const today = [now.getFullYear(), String(now.getMonth() + 1).padStart(2, '0'), String(now.getDate()).padStart(2, '0')].join('-');
             let valid = checkField('bookingName', fullNameOk(name), 'Enter a full name (2+ letters).');
@@ -208,7 +307,19 @@
             valid = checkField('bookingEnd', end !== '' && end > start, 'Return date must be later than pick-up date.') && valid;
             if (!valid) { status('finalBookingStatus', 'Please correct the highlighted fields.', 'danger'); return; }
             const bookings = load(BOOKINGS, []);
-            bookings.push({ id: 'B' + Date.now(), email, name, phone, car: el('car').selectedOptions[0].textContent.trim(), start, end, status: 'Demo request' });
+            bookings.push({
+                id: 'B' + Date.now(),
+                email,
+                name,
+                phone,
+                car: el('car').selectedOptions[0].textContent.trim(),
+                start,
+                end,
+                pickupLocation,
+                pickupLatitude: selectedPickupLocation ? selectedPickupLocation.latitude : null,
+                pickupLongitude: selectedPickupLocation ? selectedPickupLocation.longitude : null,
+                status: 'Demo request'
+            });
             if (!save(BOOKINGS, bookings)) { status('finalBookingStatus', 'Could not save the request. Browser storage is unavailable.', 'danger'); return; }
             status('finalBookingStatus', 'Request saved in this browser! View it in your Profile. This is not a real reservation.', 'success');
         });
@@ -216,6 +327,11 @@
 
     function initMap() {
         let lastRequestAt = 0;
+        el('pickupPlace').addEventListener('input', function () {
+            selectedPickupLocation = null;
+            el('mapResult').replaceChildren();
+            el('mapStatus').textContent = '';
+        });
         el('findMap').addEventListener('click', async function () {
             const locationQuery = el('pickupPlace').value.trim();
             const map = el('mapResult');
@@ -254,7 +370,15 @@
                 if (!Array.isArray(result) || !result.length) { el('mapStatus').textContent = 'Location not found. Try a larger city name.'; return; }
                 const latitude = Number(result[0].lat);
                 const longitude = Number(result[0].lon);
-                if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) throw new Error('Invalid coordinates');
+                if (!Number.isFinite(latitude) || latitude < -90 || latitude > 90 ||
+                    !Number.isFinite(longitude) || longitude < -180 || longitude > 180) {
+                    throw new Error('Invalid coordinates');
+                }
+                selectedPickupLocation = {
+                    name: result[0].display_name || locationQuery,
+                    latitude,
+                    longitude
+                };
                 const zoom = 0.02;
                 const bbox = [longitude - zoom, latitude - zoom, longitude + zoom, latitude + zoom].join(',');
                 const frame = document.createElement('iframe');

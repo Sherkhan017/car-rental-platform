@@ -7,20 +7,20 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: "mercedes", name: "Mercedes E-Class", category: "Premium", price: 60000, image: "images/mercedes.webp", description: "Elegant car for comfortable journeys.", rating: 0 },
         { id: "k8", name: "Kia K8", category: "Business", price: 42000, image: "images/k8.webp", description: "Spacious sedan with modern comfort features.", rating: 0 },
         { id: "gls", name: "Mercedes GLS", category: "Luxury", price: 110000, image: "images/gls.jpeg", description: "Large luxury SUV for relaxed trips with family or friends.", rating: 0 },
-        { id: "elantra", name: "Hyundai Elantra", category: "Comfort", price: 25000, image: "images/demo-elantra.svg", description: "Economical automatic sedan with easy city handling.", rating: 0, illustration: true },
-        { id: "kia-k5", name: "Kia K5", category: "Comfort", price: 29000, image: "images/demo-kia-k5.svg", description: "Roomy midsize sedan with modern safety features.", rating: 0, illustration: true },
-        { id: "accord", name: "Honda Accord", category: "Comfort", price: 34000, image: "images/demo-accord.svg", description: "Smooth everyday travel with a spacious cabin.", rating: 0, illustration: true },
-        { id: "passat", name: "Volkswagen Passat", category: "Comfort", price: 32000, image: "images/demo-passat.svg", description: "Practical long-distance comfort with generous luggage space.", rating: 0, illustration: true },
-        { id: "lexus-es", name: "Lexus ES 250", category: "Business", price: 56000, image: "images/demo-lexus-es.svg", description: "Quiet executive sedan with comfortable rear seating.", rating: 0, illustration: true },
-        { id: "crown", name: "Toyota Crown", category: "Business", price: 55000, image: "images/demo-crown.svg", description: "Refined sedan for airport transfers and business visits.", rating: 0, illustration: true },
-        { id: "genesis", name: "Genesis G80", category: "Business", price: 62000, image: "images/demo-genesis.svg", description: "Modern executive car with a refined interior.", rating: 0, illustration: true },
-        { id: "audi-a7", name: "Audi A7", category: "Premium", price: 70000, image: "images/demo-audi-a7.svg", description: "Premium fastback with elegant styling and roomy cabin.", rating: 0, illustration: true },
-        { id: "bmw-7", name: "BMW 7 Series", category: "Premium", price: 95000, image: "images/demo-bmw-7.svg", description: "Flagship business-class sedan with a luxurious ride.", rating: 0, illustration: true },
-        { id: "volvo", name: "Volvo S90", category: "Premium", price: 68000, image: "images/demo-volvo.svg", description: "Comfort-focused premium sedan for relaxed journeys.", rating: 0, illustration: true },
-        { id: "panamera", name: "Porsche Panamera", category: "Luxury", price: 125000, image: "images/demo-panamera.svg", description: "Sporty luxury sedan for a premium driving experience.", rating: 0, illustration: true },
-        { id: "range-rover", name: "Range Rover Autobiography", category: "Luxury", price: 145000, image: "images/demo-range-rover.svg", description: "Prestigious SUV with spacious interior and elevated comfort.", rating: 0, illustration: true },
-        { id: "s-class", name: "Mercedes S-Class", category: "Luxury", price: 135000, image: "images/demo-s-class.svg", description: "Flagship limousine designed for executive comfort.", rating: 0, illustration: true },
-        { id: "lexus-lx", name: "Lexus LX 600", category: "Luxury", price: 130000, image: "images/demo-lexus-lx.svg", description: "Large luxury SUV built for refined family travel.", rating: 0, illustration: true }
+        { id: "elantra", name: "Hyundai Elantra", category: "Comfort", price: 25000, image: "images/hyundai-elantra.jpg", description: "Economical automatic sedan with easy city handling.", rating: 0 },
+        { id: "kia-k5", name: "Kia K5", category: "Comfort", price: 29000, image: "images/kia-k5.jpg", description: "Roomy midsize sedan with modern safety features.", rating: 0 },
+        { id: "accord", name: "Honda Accord", category: "Comfort", price: 34000, image: "images/honda-accord.jpg", description: "Smooth everyday travel with a spacious cabin.", rating: 0 },
+        { id: "passat", name: "Volkswagen Passat", category: "Comfort", price: 32000, image: "images/volkswagen-passat.jpg", description: "Practical long-distance comfort with generous luggage space.", rating: 0 },
+        { id: "lexus-es", name: "Lexus ES 250", category: "Business", price: 56000, image: "images/lexus-es.jpg", description: "Quiet executive sedan with comfortable rear seating.", rating: 0 },
+        { id: "crown", name: "Toyota Crown", category: "Business", price: 55000, image: "images/toyota-crown.jpg", description: "Refined sedan for airport transfers and business visits.", rating: 0 },
+        { id: "genesis", name: "Genesis G80", category: "Business", price: 62000, image: "images/genesis-g80.jpg", description: "Modern executive car with a refined interior.", rating: 0 },
+        { id: "audi-a7", name: "Audi A7", category: "Premium", price: 70000, image: "images/audi-a7.jpg", description: "Premium fastback with elegant styling and roomy cabin.", rating: 0 },
+        { id: "bmw-7", name: "BMW 7 Series", category: "Premium", price: 95000, image: "images/bmw-7-series.jpg", description: "Flagship business-class sedan with a luxurious ride.", rating: 0 },
+        { id: "volvo", name: "Volvo S90", category: "Premium", price: 68000, image: "images/volvo-s90.jpg", description: "Comfort-focused premium sedan for relaxed journeys.", rating: 0 },
+        { id: "panamera", name: "Porsche Panamera", category: "Luxury", price: 125000, image: "images/porsche-panamera.jpg", description: "Sporty luxury sedan for a premium driving experience.", rating: 0 },
+        { id: "range-rover", name: "Range Rover Autobiography", category: "Luxury", price: 145000, image: "images/range-rover.jpg", description: "Prestigious SUV with spacious interior and elevated comfort.", rating: 0 },
+        { id: "s-class", name: "Mercedes S-Class", category: "Luxury", price: 135000, image: "images/mercedes-s-class.jpg", description: "Flagship limousine designed for executive comfort.", rating: 0 },
+        { id: "lexus-lx", name: "Lexus LX 600", category: "Luxury", price: 130000, image: "images/lexus-lx.jpg", description: "Large luxury SUV built for refined family travel.", rating: 0 }
     ];
 
     cars.forEach(function (car) {
@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
         image.className = "card-img-top";
         image.src = car.image;
         image.loading = "lazy";
-        image.alt = car.name + (car.illustration ? " (illustration)" : "");
+        image.alt = car.name;
         if (car.photoSource) {
             image.referrerPolicy = "no-referrer";
             image.addEventListener("error", function () {
@@ -507,8 +507,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.getElementById("plannerConfirm").addEventListener("click", function () {
             updateReview();
-            status.textContent = "Your demo plan is ready. This did not create a real reservation.";
-            status.className = "planner-status alert alert-success planner-success";
+            const selectedCar = cars.find(function (car) { return car.id === carSelect.value; });
+            if (!selectedCar) return;
+            window.dispatchEvent(new CustomEvent("drivenow:save-planner", {
+                detail: {
+                    car: selectedCar.name + " — " + selectedCar.getPriceText(),
+                    start: startDate.value,
+                    end: endDate.value
+                }
+            }));
             playNotification();
         });
     }

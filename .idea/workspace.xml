@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BackgroundAgentGlobalSettings">
+    <option name="selectedModelId" value="auto" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f2f3745a-46d7-4e5a-835e-4a8adc99985b" name="Changes" comment="assignment 5">
+      <change beforePath="$PROJECT_DIR$/IMAGE_CREDITS.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PRESENTATION_NOTES.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/QA_REPORT.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booking.html" beforeDir="false" afterPath="$PROJECT_DIR$/booking.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cars.html" beforeDir="false" afterPath="$PROJECT_DIR$/cars.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/final.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/final.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/demo-accord.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/demo-audi-a7.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/demo-bmw-7.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/demo-crown.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/demo-elantra.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/demo-genesis.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/demo-kia-k5.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/demo-lexus-es.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/demo-lexus-lx.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/demo-panamera.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/demo-passat.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/demo-range-rover.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/demo-s-class.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/demo-volvo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/assignment5.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/assignment5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/final.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/final.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Users/User/IdeaProjects/car-rental-platform" value="3KxQXxy9QS2ZLo4vhRBvfO20YJh" />
+    </persistenceIdMap>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Sherkhan017&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Sherkhan017/car-rental-platform.git&quot;,
+    &quot;accountId&quot;: &quot;5dd6dae6-460e-4421-a71d-d8f65f9252a5&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="3JNLwsWakre7YNYphJLFjSdx37K" />
+  <component name="ProjectSessionTemplates">
+    <option name="panelTemplate">
+      <template>
+        <option name="modeId" value="Agent" />
+        <option name="model">
+          <model>
+            <option name="modelType" value="builtin_id" />
+            <option name="modelValue" value="auto" />
+          </model>
+        </option>
+        <option name="targetType" value="BACKGROUND" />
+        <option name="worktreeMode" value="WORKSPACE" />
+      </template>
+    </option>
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.apply_assignment4.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334" />
+        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-IU-253.28294.334" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f2f3745a-46d7-4e5a-835e-4a8adc99985b" name="Changes" comment="" />
+      <created>1789496820724</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1789496820724</updated>
+      <workItem from="1789496822325" duration="293000" />
+      <workItem from="1789559861377" duration="3869000" />
+      <workItem from="1789579713065" duration="10467000" />
+      <workItem from="1789637110323" duration="2467000" />
+      <workItem from="1789643226934" duration="1322000" />
+      <workItem from="1789707325030" duration="3805000" />
+      <workItem from="1790153643000" duration="139000" />
+      <workItem from="1790181215521" duration="4547000" />
+      <workItem from="1790245160642" duration="597000" />
+      <workItem from="1790617532469" duration="2123000" />
+      <workItem from="1791400724191" duration="1270000" />
+      <workItem from="1792408046870" duration="273000" />
+      <workItem from="1792496423996" duration="4006000" />
+      <workItem from="1792662002563" duration="271000" />
+      <workItem from="1793208031894" duration="7317000" />
+      <workItem from="1793797467245" duration="14000" />
+      <workItem from="1794917860748" duration="6388000" />
+    </task>
+    <task id="LOCAL-00001" summary="added booking and about pages and css file">
+      <option name="closed" value="true" />
+      <created>1789562769673</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1789562769673</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added pictures">
+      <option name="closed" value="true" />
+      <created>1789581201101</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1789581201101</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added pictures">
+      <option name="closed" value="true" />
+      <created>1789590110846</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1789590110846</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added responsibilities">
+      <option name="closed" value="true" />
+      <created>1789600453177</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1789600453177</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added responsibilities">
+      <option name="closed" value="true" />
+      <created>1789600464446</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1789600464446</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added pictures">
+      <option name="closed" value="true" />
+      <created>1789600815220</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1789600815220</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Grid Areas section">
+      <option name="closed" value="true" />
+      <created>1790185746788</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1790185746788</updated>
+    </task>
+    <task id="LOCAL-00008" summary="added pictures">
+      <option name="closed" value="true" />
+      <created>1790186595996</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1790186595996</updated>
+    </task>
+    <task id="LOCAL-00009" summary="assignment 3">
+      <option name="closed" value="true" />
+      <created>1790619956697</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1790619956697</updated>
+    </task>
+    <task id="LOCAL-00010" summary="unnecessary elements have been removed">
+      <option name="closed" value="true" />
+      <created>1791401449240</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1791401449240</updated>
+    </task>
+    <task id="LOCAL-00011" summary="assignment 4">
+      <option name="closed" value="true" />
+      <created>1792500182112</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1792500182112</updated>
+    </task>
+    <task id="LOCAL-00012" summary="assignment 5">
+      <option name="closed" value="true" />
+      <created>1793214220009</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1793214220009</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added booking and about pages and css file" />
+    <MESSAGE value="added responsibilities" />
+    <MESSAGE value="Grid Areas section" />
+    <MESSAGE value="added pictures" />
+    <MESSAGE value="assignment 3" />
+    <MESSAGE value="unnecessary elements have been removed" />
+    <MESSAGE value="assignment 4" />
+    <MESSAGE value="assignment 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="assignment 5" />
+  </component>
+</project>

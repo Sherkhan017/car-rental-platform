@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveNow — Assignment #5 Report</title>
+    <style>
+        :root { color: #1f2937; font-family: Arial, Helvetica, sans-serif; line-height: 1.55; }
+        body { max-width: 900px; margin: 0 auto; padding: 32px 22px; }
+        h1, h2, h3 { color: #123b62; line-height: 1.2; }
+        h1 { margin-bottom: 8px; }
+        h2 { margin-top: 32px; border-bottom: 2px solid #dbeafe; padding-bottom: 7px; }
+        h3 { margin-top: 24px; }
+        .cover { min-height: 82vh; display: flex; flex-direction: column; justify-content: center; }
+        .cover-card, .callout { padding: 20px; border: 1px solid #dbeafe; border-radius: 12px; background: #f7fbff; }
+        .muted { color: #526170; }
+        .steps li { margin-bottom: 7px; }
+        .evidence-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 14px 0 24px; }
+        .evidence { margin: 0; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; background: #f8fafc; break-inside: avoid; }
+        .evidence strong { display: block; color: #123b62; margin-bottom: 8px; }
+        .evidence span { color: #536273; font-size: 0.9rem; }
+        .evidence img { display: block; width: 100%; height: auto; object-fit: contain; object-position: top left; border: 1px solid #d5dde5; }
+        table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+        th, td { border: 1px solid #cbd5e1; text-align: left; vertical-align: top; padding: 8px; }
+        th { background: #eff6ff; }
+        code { font-family: Consolas, monospace; background: #f1f5f9; padding: 1px 4px; }
+        .page-break { break-before: page; }
+        @media (max-width: 620px) {
+            body { padding: 20px 14px; }
+            .evidence-grid { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body { max-width: none; padding: 0; font-size: 10.5pt; }
+            .cover { min-height: 95vh; }
+            .evidence { min-height: 125px; }
+            a { color: inherit; text-decoration: none; }
+            h2, h3 { break-after: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <header class="cover">
+        <p class="muted">FRONT-END DEVELOPMENT • 2026</p>
+        <h1>DriveNow — Assignment #5 Report</h1>
+        <h2>Advanced JavaScript and DOM Manipulation</h2>
+        <div class="cover-card">
+            <p><strong>Team Name:</strong> DriveNow Team</p>
+            <p><strong>Group:</strong> SE-2501</p>
+            <p><strong>Team Members:</strong> Amangeldi Sherkhan, Bekzat Abilkhaev</p>
+            <p><strong>Website:</strong> <a href="https://sherkhan017.github.io/car-rental-platform/">https://sherkhan017.github.io/car-rental-platform/</a></p>
+            <p><strong>Project:</strong> Existing four-page DriveNow car rental website, continued from Assignments 1–4.</p>
+        </div>
+        <p class="muted">This is an editable report source. The marked screenshot spaces are not evidence images. Add genuine screenshots and export this file to PDF before submission.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>1. Objective</h2>
+            <p>The objective was to continue the existing DriveNow website and practise advanced JavaScript and DOM manipulation. We added a car finder, personal demo ratings, a three-step rental planner, keyboard navigation, sound effects, and small animations. We kept the four existing pages and Assignment 4 features.</p>
+        </section>
+
+        <section>
+            <h2>2. DOM Manipulation and Styling</h2>
+            <p>The Cars page has category buttons and a dynamic car list. JavaScript creates cards and five star buttons for each car. A visitor can select a car and give a personal demo rating. The interface updates the available-car count, selected car, star color, accessibility attributes, and messages.</p>
+            <p><strong>Steps:</strong></p>
+            <ol class="steps">
+                <li>JavaScript finds the filter buttons and list with DOM selection methods.</li>
+                <li>It filters the car array and creates card elements with text and images.</li>
+                <li>It adds five rating buttons to every card and sets their initial state.</li>
+                <li>A click updates the selected stars, <code>aria-pressed</code>, and rating text.</li>
+            </ol>
+            <p><strong>Files:</strong> <code>cars.html</code>, <code>js/assignment5.js</code>, <code>css/assignment5.css</code>. The cars and prices are Toyota Camry (30,000 KZT/day), Audi A6 (50,000 KZT/day), BMW 5 Series (40,000 KZT/day), and Mercedes E-Class (60,000 KZT/day), based on the existing project catalogue and booking/pricing information.</p>
+            <p>These are personal demo ratings, not customer reviews. Text updates use <code>textContent</code>; dynamic car content is created as DOM elements.</p>
+            <div class="evidence-grid">
+                <figure class="evidence"><strong>Source code — star-rating DOM update in js/assignment5.js</strong><img src="screenshots/source-rating-stars.png" alt="Screenshot of the actual JavaScript rating-star source code"></figure>
+                <figure class="evidence"><strong>Running website — cars.html, filters and personal rating</strong><img src="screenshots/cars-all-filter-rating.png" alt="Screenshot of DriveNow Car Finder with four cars, selected rating, and mute control"></figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>3. Event Handling</h2>
+            <p>Buttons use <code>addEventListener("click", ...)</code>. The Car Finder uses one click listener on the list for star and car-selection actions. The menu listens for <code>keydown</code>. Arrow keys move focus between links in the focused main or sidebar menu. The handler does not capture arrow keys from text fields.</p>
+            <p><strong>Steps:</strong> focus a menu link; press an arrow key; the script finds the next link in the same menu, prevents the page's default arrow action, and calls <code>focus()</code> on that link. Mouse navigation remains unchanged.</p>
+            <p><strong>Files:</strong> `js/assignment5.js` and the existing navigation in all four HTML pages.</p>
+            <div class="evidence-grid">
+                <figure class="evidence"><strong>Source code — keyboard navigation in js/assignment5.js</strong><img src="screenshots/source-menu-audio.png" alt="Screenshot of the actual keyboard-navigation source code"></figure>
+                <figure class="evidence"><strong>Running website — Bootstrap offcanvas menu and keyboard focus</strong><img src="screenshots/mobile-sidebar-keyboard.png" alt="Screenshot of the DriveNow offcanvas menu with the Cars link focused"></figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>4. Objects and Methods</h2>
+            <p>The car catalogue in `js/assignment5.js` is an array of objects. Each car stores its id, name, category, price, image, description, and current personal demo rating. The `getPriceText()` object method formats a daily price, and the interface calls that method for the car card and planner.</p>
+            <p><strong>Steps:</strong> define one object for each real car; call `getPriceText()` when presenting its price; use the object’s rating property when a visitor selects a star.</p>
+            <div class="evidence-grid">
+                <figure class="evidence"><strong>Source code — car objects and getPriceText() in js/assignment5.js</strong><img src="screenshots/source-car-data.png" alt="Screenshot of the actual DriveNow car data objects and price method"></figure>
+                <figure class="evidence"><strong>Running website — cars.html car data</strong><img src="screenshots/cars-all-filter-rating.png" alt="Screenshot of the car finder and the matching vehicle price"></figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>5. Arrays, Loops, and Higher-Order Functions</h2>
+            <p>The car objects are stored in an array. A traditional `for` loop creates the five star buttons. `filter()` selects cars by category, `forEach()` renders cards and updates controls, and `map()` creates the rental planner’s car options.</p>
+            <p><strong>Steps:</strong> store the cars; filter them using the selected category; loop through the result to create cards; map car data into select options. The filtering uses a real `switch` statement for All, Comfort, Business, Premium, and Luxury.</p>
+            <p><strong>File:</strong> `js/assignment5.js`.</p>
+            <div class="evidence-grid">
+                <figure class="evidence"><strong>Source code — switch and filter() in js/assignment5.js</strong><img src="screenshots/source-filter-switch.png" alt="Screenshot of the actual category switch and filter code"></figure>
+                <figure class="evidence"><strong>Running website — Premium category result</strong><img src="screenshots/cars-premium-filter.png" alt="Screenshot showing one premium car and its available count"></figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>6. Sound Effects</h2>
+            <p>A short, quiet sound is generated with the Web Audio API after a rating or demo-plan confirmation. It does not autoplay. A new signal stops the previous signal. The Sound button mutes and unmutes playback. If the browser does not support Web Audio, the control reports that sound is unavailable.</p>
+            <p><strong>Steps:</strong> click a star or confirm the demo plan; the browser creates a short tone; use Sound: Off to mute future tones.</p>
+            <p><strong>Files:</strong> `js/assignment5.js`, `cars.html`, `index.html`.</p>
+            <div class="evidence-grid">
+                <figure class="evidence"><strong>Source code — Web Audio notification in js/assignment5.js</strong><img src="screenshots/source-audio-playback.png" alt="Screenshot of the actual Web Audio notification function"></figure>
+                <figure class="evidence"><strong>Running website — mute control on mobile</strong><img src="screenshots/mobile-car-finder.png" alt="Screenshot of the mobile Car Finder with its mute control"></figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>7. Animations</h2>
+            <p>Car cards fade into the page after a category is selected. Rating stars respond when pressed. Planner steps fade or slide into view. CSS contains the transitions and animation rules. A reduced-motion media query limits motion when requested by the user’s device.</p>
+            <p><strong>Steps:</strong> a real user action changes a class; CSS applies a short opacity, color, or position change; reduced-motion settings shorten the effects.</p>
+            <p><strong>Files:</strong> `css/assignment5.css` and `js/assignment5.js`.</p>
+            <div class="evidence-grid">
+                <figure class="evidence"><strong>Source code — CSS transitions and reduced motion</strong><img src="screenshots/source-assignment5-css.png" alt="Screenshot of the actual Assignment 5 CSS animation and reduced-motion rules"></figure>
+                <figure class="evidence"><strong>Running website — rental planner dates</strong><img src="screenshots/planner-step-dates.png" alt="Screenshot of the rental planner showing entered dates in step two"></figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>8. Clean Code and Structure</h2>
+            <p>HTML holds the content and controls. `css/style.css` keeps the original shared design, and the new styles are in `css/assignment5.css`. Assignment 4 JavaScript remains in `js/script.js`; the new functionality is in `js/assignment5.js`. The scripts are linked from the existing pages, and project paths are relative for static hosting.</p>
+            <p><strong>Steps:</strong> reuse the existing Bootstrap layout; add labelled HTML controls; keep event and data logic in JavaScript; keep new visual states and motion in CSS. No new package or backend is required.</p>
+            <p><strong>Files:</strong> all four HTML files, both CSS files, and both JavaScript files.</p>
+            <div class="evidence-grid">
+                <figure class="evidence"><strong>Source code — planner functions in js/assignment5.js</strong><img src="screenshots/source-planner-callback.png" alt="Screenshot of the actual multi-step planner source code"></figure>
+                <figure class="evidence"><strong>Running website — completed three-step rental planner</strong><img src="screenshots/planner-review-confirmation.png" alt="Screenshot of the rental planner review with demo confirmation"></figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>9. UX and Engagement</h2>
+            <p>The new parts use the existing blue and dark DriveNow colors and Bootstrap layout. Labels, keyboard focus, live messages, a no-results message, and a personal-rating note explain the controls. The car finder adapts to a narrow screen, and planner buttons remain usable on mobile.</p>
+            <p><strong>Steps:</strong> use the filter group to narrow the cars; read the available count; choose and rate a car; use the planner to review a demo trip. A demo confirmation does not claim to make a real booking.</p>
+            <p><strong>Files:</strong> `cars.html`, `index.html`, `css/assignment5.css`, and `js/assignment5.js`.</p>
+            <div class="evidence-grid">
+                <figure class="evidence"><strong>Source code — responsive and reduced-motion styles</strong><img src="screenshots/source-assignment5-css.png" alt="Screenshot of the actual mobile and reduced-motion styles"></figure>
+                <figure class="evidence"><strong>Running website — responsive mobile Car Finder</strong><img src="screenshots/mobile-car-finder.png" alt="Screenshot of DriveNow Car Finder in a narrow mobile viewport"></figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>10. Step-by-Step Description</h2>
+            <ol class="steps">
+                <li>Keep the current four-page DriveNow website and inspect its existing cars, images, prices, and Assignment 4 scripts.</li>
+                <li>Add a car data array with object methods to the new JavaScript file.</li>
+                <li>Use category buttons and the switch-based filter to render car cards.</li>
+                <li>Add personal star ratings, selected-car information, and accessibility states.</li>
+                <li>Add arrow-key navigation to the existing menus.</li>
+                <li>Add the three-step planner without replacing the booking form.</li>
+                <li>Add short user-triggered audio and reduced-motion-aware CSS effects.</li>
+                <li>Keep the previous validation, FAQ, popup, background changer, and clock in their existing code.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>11. Testing and Final Result</h2>
+            <p>Chrome was used to open the local static site and test the interface through the Chrome DevTools Protocol. The five category buttons showed the expected counts: All (4), Comfort (1), Business (1), Premium (1), and Luxury (1). Star selection changed from 4/5 to 2/5, and the accessible pressed-star count changed with it.</p>
+            <p>The planner rejected a missing car, accepted valid future dates, displayed the selected Audi A6 and dates in the review, preserved the dates after Back, and displayed a demo-only confirmation. Desktop and offcanvas keyboard navigation moved focus; arrow keys in a date field were not prevented. FAQ, contact popup, carousel, booking validation, background control, clock, and car images were also checked. Tablet (768px) and mobile (390px) layouts had no horizontal overflow. No browser JavaScript errors were observed during these checks.</p>
+            <p><strong>Limitations:</strong> generated audio was not verified through physical speakers; GitHub Pages deployment was not checked. The screenshots in this report are real captures from the local running site and actual source files, not proof of deployment.</p>
+            <p><strong>Result:</strong> the new components and the checked Assignment 4 interactions worked in the local browser. See `ASSIGNMENT5_CHECKLIST.md` for the verification status.</p>
+            <div class="evidence-grid">
+                <figure class="evidence"><strong>Source code — preserved booking validation in js/script.js</strong><img src="screenshots/source-assignment4-booking.png" alt="Screenshot of the existing booking form validation code"></figure>
+                <figure class="evidence"><strong>Running website — booking form validation</strong><img src="screenshots/assignment4-booking-validation.png" alt="Screenshot of the existing booking form showing validation errors"></figure>
+            </div>
+            <h3>Assignment 4 features kept in place</h3>
+            <p>The existing booking validation remains on `booking.html`. The FAQ and contact form remain on `about.html`. The background color control remains on `index.html`, and the live clock remains in all four footers. The Bootstrap carousel also remains on the About page and its slide navigation worked in the browser check.</p>
+            <div class="evidence-grid">
+                <figure class="evidence"><strong>Source code — FAQ handler in js/script.js</strong><img src="screenshots/source-assignment4-faq.png" alt="Screenshot of the actual Assignment 4 FAQ event handler"></figure>
+                <figure class="evidence"><strong>Running website — FAQ accordion</strong><img src="screenshots/assignment4-faq.png" alt="Screenshot of the About page with a FAQ answer expanded"></figure>
+                <figure class="evidence"><strong>Source code — contact popup in js/script.js</strong><img src="screenshots/source-assignment4-popup.png" alt="Screenshot of the actual contact popup source code"></figure>
+                <figure class="evidence"><strong>Running website — contact popup</strong><img src="screenshots/assignment4-contact-popup.png" alt="Screenshot of the contact popup open on the About page"></figure>
+                <figure class="evidence"><strong>Source code — background color and live clock in js/script.js</strong><img src="screenshots/source-assignment4-theme-clock.png" alt="Screenshot of the background color and live clock code"></figure>
+                <figure class="evidence"><strong>Running website — background control and live clock</strong><img src="screenshots/assignment4-background.png" alt="Screenshot of the Home page background changer and live clock"></figure>
+            </div>
+        </section>
+
+        <section>
+            <h2>12. Challenges and Solutions</h2>
+            <p>One challenge was adding new JavaScript without changing earlier assignment behavior. We kept Assignment 4 code in its existing file and added a separate script. Another challenge was keeping the car data consistent with the website. We used the real catalogue cars, their existing images, and the project’s listed prices. The planner is clearly described as a demo because the project has no backend.</p>
+        </section>
+
+        <section>
+            <h2>13. Final Reflection</h2>
+            <p>This assignment helped us practise selecting and creating DOM elements, listening to events, using objects and arrays, and updating a page without reloading. We also learned that keyboard access, clear messages, reduced motion, and honest demo labels are important parts of a website. We need to finish real browser testing and add our own screenshots before submitting the final PDF.</p>
+        </section>
+
+        <section>
+            <h2>14. Deployment</h2>
+            <p>The project uses relative paths and static HTML/CSS/JavaScript, so it is designed for GitHub Pages. The configured website address is <a href="https://sherkhan017.github.io/car-rental-platform/">https://sherkhan017.github.io/car-rental-platform/</a>. No deployment was performed or verified as part of this work. After pushing the changes, the team must check the GitHub Pages build and open the deployed pages.</p>
+            <p class="callout"><strong>Submission reminder:</strong> this report includes genuine local-site and source-code screenshots. Confirm all images display in the exported PDF, check the deployed website after pushing, and have both team members submit individually.</p>
+        </section>
+    </main>
+</body>
+</html>

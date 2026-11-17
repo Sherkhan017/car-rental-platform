@@ -7,6 +7,8 @@ button, .btn, .feature-card, .media-car-card { transition: background-color .2s,
 .btn:hover { transform: translateY(-1px); }
 .btn:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid #0284c7; outline-offset: 2px; }
 #mapResult iframe { display: block; width: 100%; height: 240px; border: 1px solid #d1d5db; border-radius: 8px; }
+#myBookings .booking-actions { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .6rem; margin-top: .55rem; }
+#myBookings .booking-actions .btn { margin-left: auto; border-radius: .5rem; padding: .3rem .7rem; }
 body.dark-mode .auth-panel, body.dark-mode .info-box { background: #1e293b !important; color: #e2e8f0; border-color: #475569 !important; }
 body.dark-mode .field-error { color: #fca5a5; }
 body.dark-mode .form-text { color: #cbd5e1; }
@@ -71,9 +73,7 @@ body.dark-mode .alert-info { background: #164e63; color: #cffafe; border-color: 
 .finder-card .price-unit { font-size: .79rem; font-weight: 600; }
 .finder-card .rating-message { font-size: .91rem !important; color: #475569; }
 .finder-card .card-img-top { height: 198px; object-fit: cover; }
-.car-illustration-note { display: block; margin: -.45rem 0 .65rem; color: #64748b; font-size: .76rem; font-weight: 600; }
 body.dark-mode .finder-card .card-title, body.dark-mode .finder-card .card-text { color: #f1f5f9 !important; }
-body.dark-mode .car-illustration-note { color: #cbd5e1; }
 /* Background color button visibly changes the page in both light and dark modes. */
 body:not(.dark-mode), body:not(.dark-mode) main, body:not(.dark-mode) .hero-section,
 body:not(.dark-mode) .section-light, body:not(.dark-mode) .stats-section { background-color: var(--page-background) !important; }
@@ -89,6 +89,4 @@ body.dark-mode .bootstrap-car-card .card-text { color: #dbeafe !important; }
 
 
 /* Cleaner catalogue cards: keep every car image prominent and consistent. */
-.car-illustration-note { display: none !important; }
 .finder-card .card-img-top { background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%); border-bottom: 1px solid #e2e8f0; }
-.finder-card .card-img-top[src$=".svg"] { object-fit: cover; padding: 0; }
