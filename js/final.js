@@ -54,6 +54,8 @@
             try { dark = localStorage.getItem('drivenow-theme') === 'dark'; } catch (error) { /* storage blocked */ }
             const apply = () => {
                 document.body.classList.toggle('dark-mode', dark);
+                const themeLabel = document.getElementById('themeModeLabel');
+                if (themeLabel) themeLabel.textContent = dark ? 'Dark Mode: On' : 'Dark Mode: Off';
                 document.querySelectorAll('.theme-toggle').forEach((b) => { b.setAttribute('aria-pressed', String(dark)); b.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode'); });
             };
             apply();

@@ -3,7 +3,8 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     const colors = ["#f7f8fa", "#e0f2fe", "#fef3c7", "#dcfce7", "#f3e8ff"];
-    const colorNames = ["Original", "Light Blue", "Light Yellow", "Light Green", "Light Purple"];
+    const colorNames = ["Original", "Light Blue", "Warm Sand", "Light Mint", "Soft Lilac"];
+    const darkColors = ["#0f172a", "#142c42", "#292134", "#142d26", "#252039"];
     const backgroundStorageKey = "drivenow-page-background";
     let savedColor = null;
     try {
@@ -14,7 +15,27 @@ document.addEventListener("DOMContentLoaded", function () {
     let colorIndex = colors.indexOf(savedColor);
     if (colorIndex < 0) colorIndex = 0;
     document.body.style.setProperty("--page-background", colors[colorIndex]);
+    document.body.style.setProperty("--dark-page-background", darkColors[colorIndex]);
 
+
+    const settingsToggle = document.getElementById("settingsToggle");
+    const settingsPanel = document.getElementById("sidebarSettings");
+    if (settingsToggle && settingsPanel) {
+        settingsToggle.addEventListener("click", function () {
+            const open = settingsToggle.getAttribute("aria-expanded") !== "true";
+            settingsToggle.setAttribute("aria-expanded", String(open));
+            settingsPanel.hidden = !open;
+        });
+    }
+    const resetButton = document.getElementById("resetPreferences");
+    if (resetButton) resetButton.addEventListener("click", function () {
+        try {
+            ["drivenow-theme", "drivenow-page-background", "drivenow-sound"].forEach(function (key) {
+                localStorage.removeItem(key);
+            });
+        } catch (error) { /* Preferences may be blocked in private mode. */ }
+        location.reload();
+    });
 
     const clock = document.getElementById("liveDateTime");
     if (clock) {
@@ -43,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
         colorButton.addEventListener("click", function () {
             colorIndex = (colorIndex + 1) % colors.length;
             document.body.style.setProperty("--page-background", colors[colorIndex]);
+            document.body.style.setProperty("--dark-page-background", darkColors[colorIndex]);
             try {
                 localStorage.setItem(backgroundStorageKey, colors[colorIndex]);
             } catch (error) {

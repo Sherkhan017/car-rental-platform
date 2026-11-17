@@ -1,12 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Small catalogue: all vehicle photos are bundled with the project (no external hotlinks).
+    // Shared demo catalogue: five cars per category; all images are local.
     const cars = [
-        { id: 'camry', name: 'Toyota Camry', category: 'Comfort', price: 30000, image: 'images/camry.webp', description: 'Comfortable sedan for city driving and family trips.', rating: 0 },
-        { id: 'audi', name: 'Audi A6', category: 'Business', price: 50000, image: 'images/audi1.webp', description: 'A practical business car for comfortable travel.', rating: 0 },
-        { id: 'bmw', name: 'BMW 5 Series', category: 'Premium', price: 40000, image: 'images/bmw.webp', description: 'Premium sedan with a smooth and enjoyable ride.', rating: 0 },
-        { id: 'mercedes', name: 'Mercedes E-Class', category: 'Premium', price: 60000, image: 'images/mercedes.webp', description: 'Elegant car for comfortable journeys.', rating: 0 },
-        { id: 'k8', name: 'Kia K8', category: 'Business', price: 42000, image: 'images/k8.webp', description: 'Spacious sedan with modern comfort features.', rating: 0 },
-        { id: 'gls', name: 'Mercedes GLS', category: 'Luxury', price: 110000, image: 'images/gls.jpeg', description: 'Large luxury SUV for relaxed trips with family or friends.', rating: 0 }
+        { id: "camry", name: "Toyota Camry", category: "Comfort", price: 30000, image: "images/camry.webp", description: "Comfortable sedan for city driving and family trips.", rating: 0 },
+        { id: "audi", name: "Audi A6", category: "Business", price: 50000, image: "images/audi1.webp", description: "A practical business car for comfortable travel.", rating: 0 },
+        { id: "bmw", name: "BMW 5 Series", category: "Premium", price: 40000, image: "images/bmw.webp", description: "Premium sedan with a smooth and enjoyable ride.", rating: 0 },
+        { id: "mercedes", name: "Mercedes E-Class", category: "Premium", price: 60000, image: "images/mercedes.webp", description: "Elegant car for comfortable journeys.", rating: 0 },
+        { id: "k8", name: "Kia K8", category: "Business", price: 42000, image: "images/k8.webp", description: "Spacious sedan with modern comfort features.", rating: 0 },
+        { id: "gls", name: "Mercedes GLS", category: "Luxury", price: 110000, image: "images/gls.jpeg", description: "Large luxury SUV for relaxed trips with family or friends.", rating: 0 },
+        { id: "elantra", name: "Hyundai Elantra", category: "Comfort", price: 25000, image: "images/demo-elantra.svg", description: "Economical automatic sedan with easy city handling.", rating: 0, illustration: true },
+        { id: "kia-k5", name: "Kia K5", category: "Comfort", price: 29000, image: "images/demo-kia-k5.svg", description: "Roomy midsize sedan with modern safety features.", rating: 0, illustration: true },
+        { id: "accord", name: "Honda Accord", category: "Comfort", price: 34000, image: "images/demo-accord.svg", description: "Smooth everyday travel with a spacious cabin.", rating: 0, illustration: true },
+        { id: "passat", name: "Volkswagen Passat", category: "Comfort", price: 32000, image: "images/demo-passat.svg", description: "Practical long-distance comfort with generous luggage space.", rating: 0, illustration: true },
+        { id: "lexus-es", name: "Lexus ES 250", category: "Business", price: 56000, image: "images/demo-lexus-es.svg", description: "Quiet executive sedan with comfortable rear seating.", rating: 0, illustration: true },
+        { id: "crown", name: "Toyota Crown", category: "Business", price: 55000, image: "images/demo-crown.svg", description: "Refined sedan for airport transfers and business visits.", rating: 0, illustration: true },
+        { id: "genesis", name: "Genesis G80", category: "Business", price: 62000, image: "images/demo-genesis.svg", description: "Modern executive car with a refined interior.", rating: 0, illustration: true },
+        { id: "audi-a7", name: "Audi A7", category: "Premium", price: 70000, image: "images/demo-audi-a7.svg", description: "Premium fastback with elegant styling and roomy cabin.", rating: 0, illustration: true },
+        { id: "bmw-7", name: "BMW 7 Series", category: "Premium", price: 95000, image: "images/demo-bmw-7.svg", description: "Flagship business-class sedan with a luxurious ride.", rating: 0, illustration: true },
+        { id: "volvo", name: "Volvo S90", category: "Premium", price: 68000, image: "images/demo-volvo.svg", description: "Comfort-focused premium sedan for relaxed journeys.", rating: 0, illustration: true },
+        { id: "panamera", name: "Porsche Panamera", category: "Luxury", price: 125000, image: "images/demo-panamera.svg", description: "Sporty luxury sedan for a premium driving experience.", rating: 0, illustration: true },
+        { id: "range-rover", name: "Range Rover Autobiography", category: "Luxury", price: 145000, image: "images/demo-range-rover.svg", description: "Prestigious SUV with spacious interior and elevated comfort.", rating: 0, illustration: true },
+        { id: "s-class", name: "Mercedes S-Class", category: "Luxury", price: 135000, image: "images/demo-s-class.svg", description: "Flagship limousine designed for executive comfort.", rating: 0, illustration: true },
+        { id: "lexus-lx", name: "Lexus LX 600", category: "Luxury", price: 130000, image: "images/demo-lexus-lx.svg", description: "Large luxury SUV built for refined family travel.", rating: 0, illustration: true }
     ];
 
     cars.forEach(function (car) {
@@ -38,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let selectedCategory = "All";
     let selectedCarId = "";
     let muted = false;
+    try { muted = localStorage.getItem("drivenow-sound") === "off"; } catch (error) { /* storage unavailable */ }
     let audioContext = null;
     let activeOscillator = null;
 
@@ -57,12 +72,12 @@ document.addEventListener("DOMContentLoaded", function () {
             if (event.target.closest(".carousel, .rating-stars, #rentalPlanner, [role='dialog'], .popup-overlay")) return;
 
             const currentLink = event.target.closest(
-                "nav[aria-label='Main navigation'] .nav-link, nav[aria-label='Sidebar navigation'] .sidebar-link"
+                "nav[aria-label='Main navigation'] .nav-link"
             );
             if (event.key === "ArrowUp" || event.key === "ArrowDown") {
                 if (!currentLink) return;
                 const menu = currentLink.closest("nav");
-                const links = Array.from(menu.querySelectorAll(".nav-link, .sidebar-link"));
+                const links = Array.from(menu.querySelectorAll(".nav-link"));
                 const currentIndex = links.indexOf(currentLink);
                 if (currentIndex === -1 || links.length < 2) return;
                 const nextIndex = (currentIndex + (event.key === "ArrowDown" ? 1 : -1) + links.length) % links.length;
@@ -126,20 +141,34 @@ document.addEventListener("DOMContentLoaded", function () {
         oscillator.stop(startTime + 0.12);
     }
 
+    window.driveNowPlaySound = playNotification;
+
     function setUpSoundControl() {
         const soundButton = document.getElementById("soundToggle");
         if (!soundButton) return;
-
-        if (!(window.AudioContext || window.webkitAudioContext)) {
-            soundButton.disabled = true;
-            soundButton.textContent = "Sound unavailable";
-            return;
+        const label = soundButton.querySelector(".sound-toggle-label");
+        function showSoundState() {
+            soundButton.setAttribute("aria-pressed", String(!muted));
+            if (label) label.textContent = muted ? "Sound: Off" : "Sound: On";
         }
-
+        showSoundState();
         soundButton.addEventListener("click", function () {
             muted = !muted;
-            soundButton.setAttribute("aria-pressed", String(muted));
-            soundButton.textContent = muted ? "Sound: Off" : "Sound: On";
+            try { localStorage.setItem("drivenow-sound", muted ? "off" : "on"); }
+            catch (error) { /* storage unavailable */ }
+            showSoundState();
+            if (!muted) playNotification();
+        });
+        const testButton = document.getElementById("testSound");
+        const settingsStatus = document.getElementById("settingsStatus");
+        if (testButton && settingsStatus) testButton.addEventListener("click", function () {
+            if (muted) { settingsStatus.textContent = "Sound is turned off. Enable it first."; return; }
+            if (!(window.AudioContext || window.webkitAudioContext)) {
+                settingsStatus.textContent = "This browser cannot play demo sounds.";
+                return;
+            }
+            settingsStatus.textContent = "Playing a short demo tone.";
+            playNotification();
         });
     }
 
@@ -175,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
         image.className = "card-img-top";
         image.src = car.image;
         image.loading = "lazy";
-        image.alt = car.name;
+        image.alt = car.name + (car.illustration ? " (illustration)" : "");
         if (car.photoSource) {
             image.referrerPolicy = "no-referrer";
             image.addEventListener("error", function () {
@@ -217,6 +246,12 @@ document.addEventListener("DOMContentLoaded", function () {
         unit.textContent = " KZT / day";
         price.append(amount, unit);
 
+        if (car.illustration) {
+            const illustrationNote = document.createElement("small");
+            illustrationNote.className = "car-illustration-note";
+            illustrationNote.textContent = "Illustration · demo vehicle";
+            body.appendChild(illustrationNote);
+        }
         const rating = makeRatingStars(car);
         const ratingMessage = document.createElement("p");
         ratingMessage.className = "rating-message small mb-3";

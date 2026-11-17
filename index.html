@@ -17,16 +17,7 @@
 <header class="site-header sticky-top">
 <nav aria-label="Main navigation" class="navbar navbar-expand-lg navbar-dark bg-dark px-2 px-sm-3 px-lg-4">
 <div class="container-fluid">
-<button aria-label="Switch to dark mode" aria-pressed="false" class="theme-toggle me-2" title="Switch to dark mode" type="button">
-<svg aria-hidden="true" class="theme-icon theme-moon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20">
-<path d="M20.5 14.1A8.5 8.5 0 0 1 9.9 3.5a8.5 8.5 0 1 0 10.6 10.6Z"></path>
-</svg>
-<svg aria-hidden="true" class="theme-icon theme-sun" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20">
-<circle cx="12" cy="12" r="4"></circle>
-<path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
-</svg>
-</button>
-<button aria-controls="mainSidebar" aria-label="Open navigation menu" class="navbar-toggler sidebar-toggle me-2" data-bs-target="#mainSidebar" data-bs-toggle="offcanvas" type="button">
+<button aria-controls="mainSidebar" aria-label="Open account and settings menu" class="navbar-toggler sidebar-toggle me-2" data-bs-target="#mainSidebar" data-bs-toggle="offcanvas" type="button">
 <span class="navbar-toggler-icon"></span>
 </button>
 <a aria-current="page" class="navbar-brand logo me-auto active" href="index.html">Drive<span>Now</span></a>
@@ -37,26 +28,36 @@
 <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
 <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
 <li class="nav-item"><a class="nav-link" data-guest-link="" href="login.html">Login</a></li>
-<li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li></ul>
+</ul>
 </div>
 </div>
 </nav>
 </header>
 <div aria-labelledby="mainSidebarLabel" class="offcanvas offcanvas-start text-bg-dark" data-bs-theme="dark" id="mainSidebar" tabindex="-1">
-<div class="offcanvas-header border-bottom border-secondary">
-<h2 class="offcanvas-title h4 mb-0" id="mainSidebarLabel">DriveNow Menu</h2>
-<button aria-label="Close" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" type="button"></button>
-</div>
-<div class="offcanvas-body d-flex flex-column">
-<nav aria-label="Sidebar navigation" class="d-flex flex-column gap-2">
-<a aria-current="page" class="sidebar-link py-3 px-3 rounded active" href="index.html">Home</a>
-<a class="sidebar-link py-3 px-3 rounded" href="cars.html">Cars</a>
-<a class="sidebar-link py-3 px-3 rounded" href="booking.html">Booking</a>
-<a class="sidebar-link py-3 px-3 rounded" href="about.html">About</a>
-<a class="sidebar-link py-3 px-3 rounded" data-guest-link="" href="login.html">Login / Sign Up</a>
-<a class="sidebar-link py-3 px-3 rounded" href="profile.html">Profile</a></nav>
-<p class="mt-auto pt-4 mb-0 small text-secondary">Car rental made simple.</p>
-</div>
+  <div class="offcanvas-header border-bottom border-secondary">
+    <div><h2 class="offcanvas-title h5 mb-0" id="mainSidebarLabel">DriveNow</h2><small class="text-secondary">Account & preferences</small></div>
+    <button aria-label="Close sidebar" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" type="button"></button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column gap-2">
+    <nav aria-label="Account navigation" class="d-flex flex-column gap-2 mb-2">
+      <a class="sidebar-option" href="profile.html"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg><span>My Profile</span></a>
+      <a class="sidebar-option" data-guest-link href="login.html"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17l5-5-5-5M15 12H3"/><path d="M13 3h5a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5"/></svg><span>Login / Sign Up</span></a>
+    </nav>
+    <div class="sidebar-divider"></div>
+    <button class="sidebar-option theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15.5A8.5 8.5 0 0 1 8.5 4a8.5 8.5 0 1 0 11.5 11.5Z"/></svg><span id="themeModeLabel">Dark Mode: Off</span></button>
+    <button class="sidebar-option" id="changeColorBtn" type="button"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18h1a2 2 0 0 0 1.5-3.4c-.8-.9-.1-2.1 1-2.1h2A3.5 3.5 0 0 0 21 12c0-5-4-9-9-9Z"/><circle cx="7.5" cy="11" r=".7"/><circle cx="10" cy="7.5" r=".7"/><circle cx="15" cy="8" r=".7"/></svg><span>Change Background</span></button>
+    <p class="sidebar-detail" id="colorName" aria-live="polite">Current color: Original</p>
+    <button class="sidebar-option" id="soundToggle" type="button" aria-pressed="true"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M17 9a4 4 0 0 1 0 6m2-8a7 7 0 0 1 0 10"/></svg><span class="sound-toggle-label">Sound: On</span></button>
+    <div class="sidebar-divider"></div>
+    <button class="sidebar-option" id="settingsToggle" type="button" aria-expanded="false" aria-controls="sidebarSettings"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="4"/></svg><span>Settings</span><span class="ms-auto settings-chevron" aria-hidden="true">▾</span></button>
+    <div id="sidebarSettings" class="sidebar-settings" hidden>
+      <p class="small mb-3">Theme, background color, and sound preferences are saved in this browser.</p>
+      <button class="btn btn-sm btn-outline-light" id="resetPreferences" type="button">Reset preferences</button>
+      <button class="btn btn-sm btn-outline-light mt-2" id="testSound" type="button">Test sound</button>
+      <p id="settingsStatus" class="small mt-2 mb-0" aria-live="polite"></p>
+    </div>
+    <p class="mt-auto pt-4 mb-0 small text-secondary">Simple car rental. No real bookings.</p>
+  </div>
 </div>
 <main>
 <section class="hero-section py-4 py-md-5">
@@ -82,7 +83,7 @@
 <div class="row g-3 text-center">
 <div class="col-12 col-sm-4">
 <div class="stats-card p-4 h-100">
-<strong class="stat-number" data-count="6">6</strong>
+<strong class="stat-number" data-count="20">20</strong>
 <p class="mb-0">Available cars</p>
 </div>
 </div>
@@ -203,7 +204,7 @@
 <div class="assignment5-panel planner-panel p-3 p-sm-4 p-lg-5 mx-auto">
 <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
 <span class="fw-semibold text-primary" id="plannerStepLabel">Step 1 of 3</span>
-<button aria-pressed="false" class="btn btn-outline-secondary btn-sm sound-control" id="soundToggle" type="button">Sound: On</button>
+
 </div>
 <div class="planner-step is-active" data-step="1">
 <label class="form-label fw-semibold" for="plannerCar">Choose a car</label>

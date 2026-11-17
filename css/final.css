@@ -42,3 +42,47 @@ body.dark-mode .alert-info { background: #164e63; color: #cffafe; border-color: 
 }
 
 @media (min-width: 992px) { .navbar .sidebar-toggle { display: none !important; } }
+
+/* Account & preferences drawer. The main navbar stays for page navigation. */
+.navbar .sidebar-toggle { display: inline-flex !important; align-items: center; justify-content: center; flex-shrink: 0; order: 0; margin-right: .7rem !important; }
+.navbar .logo { order: 1; }
+.navbar .navbar-collapse { order: 2; }
+#mainSidebar { --bs-offcanvas-width: min(340px, 92vw); }
+.sidebar-option {
+    display: flex; align-items: center; gap: .8rem; width: 100%; padding: .82rem .9rem;
+    border: 1px solid transparent; border-radius: .65rem; background: transparent;
+    color: #f1f5f9; font: inherit; font-size: 1rem; font-weight: 600;
+    text-decoration: none; text-align: left; cursor: pointer; transition: background-color .18s, border-color .18s;
+}
+.sidebar-option svg { flex-shrink: 0; color: #7dd3fc; }
+.sidebar-option:hover, .sidebar-option:focus-visible { background: #334155; color: #fff; border-color: #64748b; }
+#mainSidebar .theme-toggle { display: flex; width: 100%; height: auto; flex: 0 1 auto; }
+.sidebar-divider { height: 1px; margin: .25rem 0; background: #475569; }
+.sidebar-detail { margin: -.45rem 0 .15rem 3.1rem; font-size: .77rem; color: #cbd5e1; }
+.sidebar-settings { background: #1e293b; border: 1px solid #475569; border-radius: .65rem; padding: .9rem; color: #e2e8f0; }
+.sidebar-settings[hidden] { display: none !important; }
+#settingsToggle[aria-expanded="true"] .settings-chevron { transform: rotate(180deg); }
+.settings-chevron { transition: transform .2s; }
+/* Make catalogue descriptions and badges readable in both themes. */
+.finder-card .card-title { font-size: 1.17rem; line-height: 1.3; font-weight: 750; color: #15253b; }
+.finder-card .card-text { color: #3b4a5e; font-size: 1rem; font-weight: 500; line-height: 1.55; }
+.finder-card .car-category { font-size: .85rem; letter-spacing: .09em; font-weight: 800; }
+.finder-card .price-amount { font-size: 1.38rem; font-weight: 800; }
+.finder-card .price-unit { font-size: .79rem; font-weight: 600; }
+.finder-card .rating-message { font-size: .91rem !important; color: #475569; }
+.finder-card .card-img-top { height: 198px; object-fit: cover; }
+.car-illustration-note { display: block; margin: -.45rem 0 .65rem; color: #64748b; font-size: .76rem; font-weight: 600; }
+body.dark-mode .finder-card .card-title, body.dark-mode .finder-card .card-text { color: #f1f5f9 !important; }
+body.dark-mode .car-illustration-note { color: #cbd5e1; }
+/* Background color button visibly changes the page in both light and dark modes. */
+body:not(.dark-mode), body:not(.dark-mode) main, body:not(.dark-mode) .hero-section,
+body:not(.dark-mode) .section-light, body:not(.dark-mode) .stats-section { background-color: var(--page-background) !important; }
+body.dark-mode, body.dark-mode main, body.dark-mode .hero-section,
+body.dark-mode .section-light, body.dark-mode .stats-section { background-color: var(--dark-page-background, #0f172a) !important; }
+@media (max-width: 575px) { .finder-card .card-img-top { height: 215px; } }
+
+.bootstrap-car-card .card-title { font-size: 1.3rem; font-weight: 800; line-height: 1.25; }
+.bootstrap-car-card .card-text { font-size: 1rem; font-weight: 500; line-height: 1.55; color: #334155; }
+.bootstrap-car-card .badge { font-size: .78rem; font-weight: 600; }
+.bootstrap-car-card .card-body strong { font-size: 1.03rem; font-weight: 800; }
+body.dark-mode .bootstrap-car-card .card-text { color: #dbeafe !important; }

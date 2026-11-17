@@ -67,6 +67,7 @@
         function showTheme() {
             $("body").toggleClass("dark-mode", dark);
             const label = dark ? "Switch to light mode" : "Switch to dark mode";
+            $("#themeModeLabel").text(dark ? "Dark Mode: On" : "Dark Mode: Off");
             $(".theme-toggle").attr({
                 "aria-label": label,
                 "title": label,

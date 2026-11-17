@@ -28,3 +28,11 @@ Nominatim search is only triggered explicitly on Find, is throttled to >1.2 seco
 
 ### Security
 This is front-end-only coursework. Test accounts and booking requests live in the user's own browser localStorage; credentials are not secure for real-world use. No genuine passwords or personal booking details should be used.
+
+## Account sidebar and balanced catalogue update (17 November 2026)
+
+- Account/preferences sidebar opens on desktop and mobile, and contains **Profile, Login for guests, Dark Mode, background color, Sound On/Off and expandable Settings**. The main navbar retains **Home, Cars, Booking, About and guest Login**; Profile and theme were removed from the top navbar. Settings can reset stored preferences or test the demo sound.
+- The catalogue now contains **20 demo vehicles**: exactly **5 Comfort, 5 Business, 5 Premium, 5 Luxury**. Booking and the homepage rental planner draw options from the same catalogue; About's price table has been reconciled to those vehicles/prices.
+- Six existing photo listings retain their local image assets. The remaining fourteen have labeled **local concept illustrations**, not misleading stock photos. Image paths and XML validity checked. Vehicle titles, descriptions, prices and ratings use clearer typography.
+- Browser checks using inline-loaded project assets and a simulated localStorage backend: **24/24 page-size combinations** (6 HTML pages x 320/390/768/1366px) showed no horizontal overflow; no JavaScript runtime errors in the isolated tests. Each category filter showed exactly 5 results; sidebar opening, theme toggle, saved background change, Sound Off, Settings expansion and test-sound disabled state were exercised.
+- **Limitations:** the automated browser environment blocks navigation to HTTP(S) and file URLs, so the booking page's top-of-document navigation guard was omitted only in the isolated test harness. Production navigation, live GitHub Pages asset loading and external Maps API still need a smoke test in an unrestricted browser. No guarantee of real booking inventory or external API uptime.

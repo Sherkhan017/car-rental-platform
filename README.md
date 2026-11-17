@@ -13,22 +13,22 @@ A simple, responsive, six-page car-rental demonstration built from our original 
 | Page | Purpose |
 |---|---|
 | `index.html` | Home, featured cars, 3-step rental planner |
-| `cars.html` | Six local-photo car listings; live name/category search, filters, ratings |
+| `cars.html` | 20 car listings (5 Comfort, 5 Business, 5 Premium, 5 Luxury); live name/category search, filters, ratings |
 | `booking.html` | Account-gated booking form; OpenStreetMap location search |
 | `about.html` | Project, team, pricing, carousel, FAQ, contact form |
 | `login.html` | Sign Up and Log In; friendly inline JavaScript validation |
 | `profile.html` | Stored account information, booking history and cancellation |
 
-All six pages share the same blue/white design, responsive Bootstrap 5.3.6 grid, custom CSS, local jQuery 3.7.1, navigation and persistent Light/Dark switch.
+All six pages share the same blue/white design, responsive Bootstrap 5.3.6 grid, custom CSS, local jQuery 3.7.1, navigation and persistent Light/Dark switch, background palette and Sound On/Off.
 
 ## Functionality and grading criteria
 
-- **Responsive:** mobile sidebar, grid/card layout and readable forms at phone, tablet and desktop sizes.
+- **Responsive:** account/preferences sidebar, grid/card layout and readable forms at phone, tablet and desktop sizes.
 - **Hosting:** static pages deploy from `main` / repository root on GitHub Pages.
 - **Theme:** toggle saved under localStorage key `drivenow-theme`; applies across all pages.
 - **Login:** Sign Up saves name, email and a **demo password** locally; Log In checks credentials and sends normal login to Profile. A user selecting Book first logs in, then returns to Booking with their selected car.
 - **Validation:** `novalidate` forms and JavaScript checks for required fields, email, password complexity, KZ phone number and rental dates. Errors are rendered under each field, not only in alerts.
-- **Live search:** filters six cars; category buttons, ratings, selection controls and planner work.
+- **Live search:** filters twenty cars; category buttons, ratings, selection controls and planner work.
 - **Animations:** button hover, cards, theme toggle, counter, loading state and carousel.
 - **Public API:** on-demand `fetch()` to OpenStreetMap Nominatim for pick-up locations; loading/error messages and an embedded OpenStreetMap result; search is optional.
 - **Code organization:** `/css`, `/js`, `/images`, `/vendor`; shared responsibilities separated from task-specific scripts.
@@ -67,3 +67,10 @@ In GitHub Settings -> Pages, select Deploy from a branch -> `main` -> `/(root)` 
 - `PRESENTATION_NOTES.md` - a five-minute speaking/demo outline
 
 **Warning:** the course presentation PDF says the report must be **PDF**, although one example filename ends with `.docx`; the PDF-format requirement is followed here.
+
+
+## Sidebar & 20-car catalogue update
+
+The left offcanvas is available from the hamburger icon on desktop and mobile. It contains Profile, Login for guests, Dark Mode, Change Background, Sound On/Off and expandable Settings (reset/test sound). Home/Cars/Booking/About remain only in the top navbar. These browser preferences use localStorage. No real vehicle sound plays automatically: the sound toggle controls brief, opt-in demo tones when a rating or planner action is confirmed.
+
+The interactive catalogue offers exactly five vehicles in each of four categories, with all 20 selectable for rental-planner and booking forms. Existing local car photographs remain; 14 extra models have clearly labeled local *concept illustrations*, not misleading photographs of actual inventory. All prices and availability are demonstrations.
