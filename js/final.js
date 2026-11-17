@@ -69,6 +69,7 @@
         }
     });
 
+    // Validate demo credentials, persist the session, then return to the requested safe destination.
     function initLogin() {
         const loginForm = el('loginForm');
         const signupForm = el('signupForm');
@@ -144,6 +145,7 @@
         renderBookings(user.email);
     }
 
+    // Save planner requests for the signed-in user or hold one until the guest logs in.
     function initPlannerBooking() {
         window.addEventListener('drivenow:save-planner', (event) => {
             const request = event.detail;
@@ -183,6 +185,7 @@
         });
     }
 
+    // Attach the guest's pending plan to the account once, preserving it if saving fails.
     function savePendingPlannerRequest(user) {
         const plan = load(PENDING_PLANNER, null);
         if (!plan || typeof plan.id !== 'string' || typeof plan.car !== 'string' ||
@@ -215,6 +218,7 @@
         element.append(' ', link);
     }
 
+    // Render only this account's requests and wire cancellation and pickup-map actions.
     function renderBookings(email) {
         const element = el('myBookings');
         element.replaceChildren();
@@ -274,6 +278,7 @@
         });
     }
 
+    // Gate booking behind login, validate its fields, and store the request in local browser storage.
     function initBooking() {
         const user = getUser();
         if (!user) {
@@ -325,6 +330,7 @@
         });
     }
 
+    // Geocode on demand, cache recent results, and retain the selected point for the booking.
     function initMap() {
         let lastRequestAt = 0;
         el('pickupPlace').addEventListener('input', function () {

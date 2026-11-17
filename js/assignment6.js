@@ -16,6 +16,7 @@
         }
     }
 
+    // Load the hero immediately and defer other images until their slide or viewport is active.
     function prepareImages() {
         const pictures = document.querySelectorAll("img[data-src]");
         // Load the hero image immediately, but keep other pictures lazy.
@@ -137,6 +138,7 @@
             }).concat(["Comfort", "Business", "Premium", "Luxury"]);
             const $suggestions = $("#carSearchSuggestions");
 
+            // Rebuild matching text with text nodes and <mark>, avoiding HTML injection.
             function highlightText(element, query) {
                 const original = element.textContent; // textContent includes old <mark> text.
                 element.replaceChildren();
@@ -155,6 +157,7 @@
                 element.append(document.createTextNode(original.slice(start)));
             }
 
+            // Apply one query to card visibility, highlighted text, and the live result count.
             function filterVisibleCars() {
                 const query = String($search.val()).trim().toLowerCase();
                 let count = 0;
@@ -172,6 +175,7 @@
                 $("#finderEmptyMessage").prop("hidden", count !== 0);
             }
 
+            // Limit autocomplete results and create them as text-only buttons.
             function showSuggestions() {
                 const query = String($search.val()).trim().toLowerCase();
                 $suggestions.empty();
@@ -233,7 +237,6 @@
             }
         });
 
-        // Task 6: The loading spinner is handled in js/script.js after successful
-        // Assignment 4 booking validation. Do not register a second submit handler.
+
     });
 }());

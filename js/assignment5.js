@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
             String(now.getDate()).padStart(2, "0");
     }
 
+    // Route arrow keys through the main navigation without hijacking form or widget controls.
     function setUpMenuKeyboard() {
         document.addEventListener("keydown", function (event) {
             if (!["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft"].includes(event.key)) return;
@@ -111,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Reuse one audio context and oscillator to avoid overlapping demo tones.
     function playNotification() {
         const AudioContextType = window.AudioContext || window.webkitAudioContext;
         if (muted || !AudioContextType) return;
@@ -209,6 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return starGroup;
     }
 
+    // Build catalogue cards with DOM nodes so car data is inserted as text, not HTML.
     function makeCarCard(car) {
         const column = document.createElement("div");
         column.className = "col-12 col-sm-6 col-xl-3";
@@ -316,6 +319,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Rebuild visible cards and keep the result count and filter accessibility state in sync.
     function renderCars() {
         const list = document.getElementById("finderCars");
         const count = document.getElementById("availableCarsCount");
@@ -358,6 +362,7 @@ document.addEventListener("DOMContentLoaded", function () {
         playNotification();
     }
 
+    // Use one delegated click handler so newly rendered cards keep their rating and selection actions.
     function setUpCarFinder() {
         const carList = document.querySelector("#finderCars");
         if (!carList) return;
@@ -406,6 +411,7 @@ document.addEventListener("DOMContentLoaded", function () {
         renderCars();
     }
 
+    // Coordinate the planner's three steps, date validation, review, and saved-request event.
     function setUpRentalPlanner() {
         const planner = document.getElementById("rentalPlanner");
         if (!planner) return;
@@ -428,6 +434,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let currentStep = 1;
 
+        // Validate only the current step, then focus the first field that needs attention.
         function validateCurrentStep() {
             status.textContent = "";
             status.className = "planner-status";
@@ -455,6 +462,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return true;
         }
 
+        // Keep the visible panel, step label, and final review synchronized during navigation.
         function showStep(stepNumber, onShown) {
             currentStep = stepNumber;
             planner.querySelectorAll(".planner-step").forEach(function (step) {

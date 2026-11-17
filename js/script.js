@@ -130,6 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("contactMessage")
         ];
 
+        // Return a field-specific message so validation and its displayed feedback stay consistent.
         function contactError(input) {
             const value = input.value.trim();
             if (!value) return "This field is required.";
@@ -156,6 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return "";
         }
 
+        // Keep visual and screen-reader error state in sync for each contact field.
         function validateContactField(input) {
             const message = contactError(input);
             const errorId = input.id + "Error";
@@ -258,6 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
         bookingForm.addEventListener("input", clearError);
         bookingForm.addEventListener("change", clearError);
 
+        // Validate the full demo form before showing success; no request is sent to a server.
         bookingForm.addEventListener("submit", function (event) {
             event.preventDefault(); // We do not have a backend server yet.
             if (bookingPending) return;
