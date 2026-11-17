@@ -7,14 +7,9 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2f3745a-46d7-4e5a-835e-4a8adc99985b" name="Changes" comment="Update car images and descriptions">
+    <list default="true" id="f2f3745a-46d7-4e5a-835e-4a8adc99985b" name="Changes" comment="Enhance keyboard navigation and improve car card rendering in the planner">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/assignment5.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/assignment5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/assignment6.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/assignment6.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/final.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/final.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/DriveNow_Assignment5_Report.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/THIRD_PARTY_LICENSES.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +117,7 @@
       <workItem from="1792662002563" duration="271000" />
       <workItem from="1793208031894" duration="7317000" />
       <workItem from="1793797467245" duration="14000" />
-      <workItem from="1794917860748" duration="7720000" />
+      <workItem from="1794917860748" duration="8861000" />
     </task>
     <task id="LOCAL-00001" summary="added booking and about pages and css file">
       <option name="closed" value="true" />
@@ -228,7 +223,15 @@
       <option name="project" value="LOCAL" />
       <updated>1794924753697</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Enhance keyboard navigation and improve car card rendering in the planner">
+      <option name="closed" value="true" />
+      <created>1794926042331</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1794926042331</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,6 +258,7 @@
     <MESSAGE value="assignment 4" />
     <MESSAGE value="assignment 5" />
     <MESSAGE value="Update car images and descriptions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update car images and descriptions" />
+    <MESSAGE value="Enhance keyboard navigation and improve car card rendering in the planner" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhance keyboard navigation and improve car card rendering in the planner" />
   </component>
 </project>
