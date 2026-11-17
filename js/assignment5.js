@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try { muted = localStorage.getItem("drivenow-sound") === "off"; } catch (error) { /* storage unavailable */ }
     let audioContext = null;
     let activeOscillator = null;
+    let lastSoundAt = 0;
 
     function getToday() {
         const now = new Date();
@@ -113,6 +114,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function playNotification() {
         const AudioContextType = window.AudioContext || window.webkitAudioContext;
         if (muted || !AudioContextType) return;
+        const now = Date.now();
+        if (now - lastSoundAt < 90) return;
+        lastSoundAt = now;
 
         if (!audioContext) audioContext = new AudioContextType();
         if (activeOscillator) {
@@ -170,6 +174,18 @@ document.addEventListener("DOMContentLoaded", function () {
             settingsStatus.textContent = "Playing a short demo tone.";
             playNotification();
         });
+    }
+
+    function setUpUniversalClickSound() {
+        document.addEventListener("click", function (event) {
+            const interactive = event.target.closest(
+                "button, .btn, .nav-link, .sidebar-option, .dropdown-item, summary, [role='button']"
+            );
+            if (!interactive) return;
+            if (interactive.id === "soundToggle" || interactive.id === "testSound") return;
+            if (interactive.disabled || interactive.getAttribute("aria-disabled") === "true") return;
+            playNotification();
+        }, true);
     }
 
     function makeRatingStars(car) {
@@ -246,12 +262,6 @@ document.addEventListener("DOMContentLoaded", function () {
         unit.textContent = " KZT / day";
         price.append(amount, unit);
 
-        if (car.illustration) {
-            const illustrationNote = document.createElement("small");
-            illustrationNote.className = "car-illustration-note";
-            illustrationNote.textContent = "Illustration · demo vehicle";
-            body.appendChild(illustrationNote);
-        }
         const rating = makeRatingStars(car);
         const ratingMessage = document.createElement("p");
         ratingMessage.className = "rating-message small mb-3";
@@ -506,6 +516,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setUpMenuKeyboard();
     setUpBookingCarOptions();
     setUpSoundControl();
+    setUpUniversalClickSound();
     setUpCarFinder();
     setUpRentalPlanner();
 });

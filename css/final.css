@@ -86,3 +86,9 @@ body.dark-mode .section-light, body.dark-mode .stats-section { background-color:
 .bootstrap-car-card .badge { font-size: .78rem; font-weight: 600; }
 .bootstrap-car-card .card-body strong { font-size: 1.03rem; font-weight: 800; }
 body.dark-mode .bootstrap-car-card .card-text { color: #dbeafe !important; }
+
+
+/* Cleaner catalogue cards: keep every car image prominent and consistent. */
+.car-illustration-note { display: none !important; }
+.finder-card .card-img-top { background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%); border-bottom: 1px solid #e2e8f0; }
+.finder-card .card-img-top[src$=".svg"] { object-fit: cover; padding: 0; }
