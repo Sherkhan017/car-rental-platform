@@ -4,6 +4,7 @@
     const USERS = 'drivenow-users';
     const SESSION = 'drivenow-session';
     const BOOKINGS = 'drivenow-bookings';
+    const MAP_CACHE = 'drivenow-location-cache';
     const el = (id) => document.getElementById(id);
     const load = (key, fallback) => {
         try { const value = localStorage.getItem(key); return value ? JSON.parse(value) : fallback; }
@@ -223,15 +224,32 @@
             map.replaceChildren();
             el('findMap').disabled = true;
             try {
-                const controller = new AbortController();
-                const timeout = setTimeout(() => controller.abort(), 8500);
-                let response;
-                try {
-                    response = await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(locationQuery), { signal: controller.signal });
-                } finally { clearTimeout(timeout); }
-                if (!response.ok) throw new Error('Service unavailable (' + response.status + ')');
-                const result = await response.json();
-                if (!result.length) { el('mapStatus').textContent = 'Location not found. Try a larger city name.'; return; }
+                // Only search on explicit click. Reuse recent results to respect Nominatim's
+                // public-service rate limits and keep repeated student demos reliable.
+                const cacheKey = locationQuery.toLowerCase();
+                const cached = load(MAP_CACHE, {});
+                let result;
+                if (cached[cacheKey] && Date.now() - cached[cacheKey].savedAt < 7 * 24 * 60 * 60 * 1000) {
+                    result = cached[cacheKey].items;
+                } else {
+                    const controller = new AbortController();
+                    const timeout = setTimeout(() => controller.abort(), 8500);
+                    let response;
+                    try {
+                        response = await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(locationQuery), {
+                            signal: controller.signal,
+                            referrerPolicy: 'strict-origin-when-cross-origin'
+                        });
+                    } finally { clearTimeout(timeout); }
+                    if (!response.ok) throw new Error('Map service error (' + response.status + ')');
+                    result = await response.json();
+                    if (!Array.isArray(result)) throw new Error('Unexpected map response');
+                    const updated = { ...cached, [cacheKey]: { savedAt: Date.now(), items: result } };
+                    // Bound cache size to avoid filling localStorage with searches.
+                    const entries = Object.entries(updated).sort((a, b) => b[1].savedAt - a[1].savedAt).slice(0, 15);
+                    save(MAP_CACHE, Object.fromEntries(entries));
+                }
+                if (!Array.isArray(result) || !result.length) { el('mapStatus').textContent = 'Location not found. Try a larger city name.'; return; }
                 const latitude = Number(result[0].lat);
                 const longitude = Number(result[0].lon);
                 if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) throw new Error('Invalid coordinates');
@@ -243,7 +261,14 @@
                 frame.referrerPolicy = 'strict-origin-when-cross-origin';
                 frame.src = 'https://www.openstreetmap.org/export/embed.html?bbox=' + encodeURIComponent(bbox) + '&layer=mapnik&marker=' + encodeURIComponent(latitude + ',' + longitude);
                 map.append(frame);
-                el('mapStatus').textContent = result[0].display_name;
+                const directLink = document.createElement('a');
+                directLink.href = 'https://www.openstreetmap.org/?mlat=' + encodeURIComponent(latitude) + '&mlon=' + encodeURIComponent(longitude) + '#map=14/' + latitude + '/' + longitude;
+                directLink.target = '_blank';
+                directLink.rel = 'noopener noreferrer';
+                directLink.className = 'd-inline-block mt-2';
+                directLink.textContent = 'Open location in OpenStreetMap';
+                map.append(directLink);
+                el('mapStatus').textContent = result[0].display_name || locationQuery;
             } catch (error) {
                 el('mapStatus').textContent = 'Map search is unavailable right now. Check your internet connection and try again.';
             } finally { el('findMap').disabled = false; }
